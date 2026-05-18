@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+.env
+.DS_Store
+.claude/
+
+# CV: LaTeX sources, build artifacts, and reference material kept local only.
+# The single served PDF (public/Fares_Zaghouane_Resume.pdf) is intentionally tracked.
+/cv/

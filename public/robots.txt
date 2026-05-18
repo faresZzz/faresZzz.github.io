@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /crawler-trap/
+
+Sitemap: https://fareszzz.github.io/sitemap.xml

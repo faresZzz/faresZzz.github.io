@@ -1,0 +1,65 @@
+---
+const { title = 'Farès Zaghouane', robots } = Astro.props;
+
+const canonicalUrl = 'https://fareszzz.github.io/';
+const ogTitle = 'Farès Zaghouane — AI / ML Research Profile';
+const ogDescription =
+  'Computer science and machine learning student at EPFL and CPE Lyon, interested in JEPA-style world models and whether giving the predictor more structure helps long-horizon prediction.';
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Farès Zaghouane',
+  url: canonicalUrl,
+  email: 'zaghouane.fares@gmail.com',
+  sameAs: [
+    'https://github.com/faresZzz',
+    'https://www.linkedin.com/in/fares-zaghouane',
+  ],
+  affiliation: [
+    { '@type': 'EducationalOrganization', name: 'EPFL' },
+    { '@type': 'EducationalOrganization', name: 'CPE Lyon' },
+  ],
+  knowsAbout: [
+    'World models',
+    'JEPA predictors',
+    'Representation learning',
+    'Computer vision',
+    'Reinforcement learning',
+    'State-space models',
+    'Koopman operators',
+    'Formal verification',
+  ],
+});
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={ogDescription} />
+    {robots && <meta name="robots" content={robots} />}
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+
+    <!-- JSON-LD structured data -->
+    <script type="application/ld+json" set:html={jsonLd} />
+
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

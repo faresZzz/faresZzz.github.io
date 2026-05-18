@@ -1,0 +1,823 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { education, experience, profile, researchDirection, researchFraming, researchApproach, skills } from '../data/profile';
+import { otherEngineering, projects } from '../data/projects';
+---
+
+<BaseLayout title="Farès Zaghouane — AI / ML Research Profile">
+  <main class="site-shell">
+    <header class="hero">
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+      </nav>
+
+      <div class="hero-grid">
+        <div>
+          <h1>{profile.name}</h1>
+          <p class="lead">{profile.headline}</p>
+          <p class="summary" set:html={profile.summary} />
+          <div class="hero-actions" aria-label="Profile links">
+            <a class="button primary" href={profile.resume}>Resume</a>
+          </div>
+        </div>
+        <aside class="profile-card" aria-label="Contact and research interests">
+          <dl>
+            <div>
+              <dt>Location</dt>
+              <dd>{profile.location}</dd>
+            </div>
+            <div>
+              <dt>Email</dt>
+              <dd>{profile.displayEmail}</dd>
+            </div>
+            <div>
+              <dt>GitHub</dt>
+              <dd><a href={profile.github}>github.com/faresZzz</a></dd>
+            </div>
+            <div>
+              <dt>LinkedIn</dt>
+              <dd><a href={profile.linkedin}>linkedin.com/in/fares-zaghouane</a></dd>
+            </div>
+          </dl>
+          <div class="tag-list" aria-label="Research interests">
+            {profile.researchInterests.map((interest) => <span>{interest}</span>)}
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <section id="research" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Research Interests</p>
+        <h2>Predictive representations for world models</h2>
+        <p class="research-framing">{researchFraming}</p>
+      </div>
+      <div class="research-grid">
+        {researchDirection.map((item) => (
+          <article class="plain-card">
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+      <div class="research-approach" aria-label="Research approach">
+        <p class="eyebrow-small">Ideas I'd like to explore</p>
+        <div class="approach-grid">
+          {researchApproach.map((item) => (
+            <div class="approach-item">
+              <strong>{item.label}</strong>
+              <p>{item.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="section-heading wide">
+        <p class="eyebrow">Selected Projects</p>
+        <h2>From ML fundamentals to multimodal predictive systems</h2>
+        <p>A few projects I found genuinely interesting and learned from, ones that shaped the questions above. Private work is described at a high level, without code or data.</p>
+      </div>
+      <div class="project-grid">
+        {projects.map((project) => {
+          const hasPublicLink = project.status === 'Public' && project.link;
+          const cardContent = (
+            <>
+              <div class="card-topline">
+                <span class="theme-label">{project.theme}</span>
+                <strong class={`status-badge ${project.status === 'Public' ? 'is-public' : 'is-quiet'}`}>{project.status}</strong>
+              </div>
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+              <ul>
+                {project.highlights.map((highlight) => <li>{highlight}</li>)}
+              </ul>
+              <div class="stack">
+                {project.stack.map((item) => <span>{item}</span>)}
+              </div>
+              {hasPublicLink && <span class="text-link">View repository &rarr;</span>}
+            </>
+          );
+
+          return hasPublicLink ? (
+            <a class="project-card project-card-link" href={project.link} aria-label={`Open ${project.title} GitHub repository`}>
+              {cardContent}
+            </a>
+          ) : (
+            <article class="project-card">
+              {cardContent}
+            </article>
+          );
+        })}
+      </div>
+    </section>
+
+    <section id="experience" class="section split-section">
+      <div class="section-heading">
+        <p class="eyebrow">Experience</p>
+        <h2>Research and engineering experience</h2>
+      </div>
+      <div class="timeline">
+        {experience.map((item) => (
+          <article class="timeline-item">
+            <p class="period">{item.period}</p>
+            <h3>{item.role}</h3>
+            <p class="meta"><strong>{item.company}</strong> · {item.location}</p>
+            <p class="experience-summary">{item.summary}</p>
+            <ul>
+              {item.bullets.map((bullet) => <li>{bullet}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="education" class="section split-section">
+      <div class="section-heading">
+        <p class="eyebrow">Education</p>
+        <h2>Computer science, AI, and systems foundations</h2>
+      </div>
+      <div class="timeline">
+        {education.map((item) => (
+          <article class="timeline-item compact">
+            <p class="period">{item.period}</p>
+            <h3>{item.degree}</h3>
+            <p class="meta">{item.school} · {item.location}</p>
+            <p class="courses">{item.courses.join(' · ')}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section skills-section">
+      <div>
+        <p class="eyebrow">Skills</p>
+        <h2>Technical toolkit</h2>
+      </div>
+      <div class="toolkit-list">
+        {skills.map((group) => (
+          <div class="toolkit-row">
+            <h3>{group.category}</h3>
+            <div class="tag-list">
+              {group.items.map((skill) => <span>{skill}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section other-work">
+      <div class="section-heading">
+        <p class="eyebrow">Additional Work</p>
+        <h2>Engineering breadth</h2>
+      </div>
+      <ul class="inline-list">
+        {otherEngineering.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <footer class="footer">
+      <p>Farès Zaghouane</p>
+      <div>
+        <a href={profile.github}>GitHub</a>
+        <a href={profile.linkedin}>LinkedIn</a>
+        <span>{profile.displayEmail}</span>
+      </div>
+    </footer>
+
+    <a class="crawler-trap" href="/crawler-trap/" rel="nofollow" aria-hidden="true" tabindex="-1">crawler trap</a>
+  </main>
+</BaseLayout>
+
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f8f7f3;
+    --paper: #fffefa;
+    --ink: #151515;
+    --muted: #585349;
+    --line: #d8d2c7;
+    --accent: #1f5f57;
+    --accent-soft: #dbe9e5;
+    --accent-border: color-mix(in srgb, var(--accent) 22%, var(--line));
+    --code: #efe9dd;
+    --transition: 0.15s ease;
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 48px;
+    --space-6: 64px;
+    --space-7: 80px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.55;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+    text-underline-offset: 0.2em;
+    transition: text-decoration-color var(--transition);
+  }
+
+  a:hover {
+    text-decoration-color: var(--accent);
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .site-shell {
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+  }
+
+  /* ── Hero ─────────────────────────────────────────────────── */
+
+  .hero {
+    padding: var(--space-3) 0 var(--space-6);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .top-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 22px;
+    margin-bottom: var(--space-6);
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .top-nav a { text-decoration: none; }
+  .top-nav a:hover { color: var(--ink); }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(440px, 520px);
+    gap: var(--space-5);
+    align-items: start;
+  }
+
+  .eyebrow {
+    margin: 0 0 10px;
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow-small {
+    margin: 0 0 14px;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  h1, h2, h3, p { overflow-wrap: anywhere; }
+
+  h1 {
+    max-width: 780px;
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    line-height: 0.95;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.9rem, 4.5vw, 3.4rem);
+    line-height: 1.04;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    margin: 0 0 var(--space-1);
+    font-size: 1.12rem;
+    line-height: 1.3;
+    font-weight: 700;
+  }
+
+  .lead {
+    max-width: 820px;
+    margin: var(--space-3) 0 0;
+    font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+    line-height: 1.38;
+    color: var(--muted);
+  }
+
+  .summary {
+    max-width: 62ch;
+    margin: var(--space-3) 0 0;
+    color: var(--ink);
+    font-size: 1.02rem;
+    border-left: 2px solid var(--accent);
+    padding-left: var(--space-2);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: var(--space-4);
+  }
+
+  .button {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0 18px;
+    background: var(--paper);
+    text-decoration: none;
+    font-weight: 650;
+    font-size: 0.93rem;
+    transition: background var(--transition), border-color var(--transition);
+  }
+
+  .button.primary {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: white;
+  }
+
+  .button.primary:hover {
+    background: color-mix(in srgb, var(--accent) 88%, black);
+    border-color: color-mix(in srgb, var(--accent) 88%, black);
+  }
+
+  /* ── Profile card ─────────────────────────────────────────── */
+
+  .profile-card {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--paper);
+    padding: var(--space-3);
+  }
+
+  dl { margin: 0; }
+
+  .profile-card dl div {
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .profile-card dl div:last-child {
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+
+  dt {
+    color: var(--muted);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+  }
+
+  dd { margin: 3px 0 0; font-size: 0.95rem; }
+
+  /* ── Tags ─────────────────────────────────────────────────── */
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .tag-list span, .stack span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    border-radius: 999px;
+    border: 1px solid var(--accent-border);
+    padding: 3px 10px;
+    background: var(--accent-soft);
+    color: #16463f;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: background var(--transition);
+  }
+
+  /* ── Sections ─────────────────────────────────────────────── */
+
+  .section {
+    padding: var(--space-6) 0;
+    border-bottom: 1px solid var(--line);
+    scroll-margin-top: var(--space-4);
+  }
+
+  .section-heading {
+    max-width: 720px;
+    margin-bottom: var(--space-4);
+  }
+
+  .section-heading.wide { max-width: 860px; }
+
+  .section-heading > p {
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+
+  .research-framing {
+    margin-top: 14px !important;
+    font-size: 0.96rem !important;
+    font-style: italic;
+    color: var(--muted) !important;
+  }
+
+  /* ── Research ─────────────────────────────────────────────── */
+
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+
+  .plain-card {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--paper);
+    padding: var(--space-3);
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .plain-card:hover { border-color: var(--accent-border); box-shadow: 0 2px 10px rgba(21,21,21,0.05); }
+  .plain-card p { color: var(--muted); margin: 0; max-width: 66ch; }
+
+  /* ── Research approach ────────────────────────────────────── */
+
+  .research-approach {
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line);
+  }
+
+  .approach-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .approach-item strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .approach-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 66ch;
+  }
+
+  /* ── Projects ─────────────────────────────────────────────── */
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--paper);
+    padding: var(--space-3);
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .project-card:hover { border-color: var(--accent-border); box-shadow: 0 2px 10px rgba(21,21,21,0.05); }
+
+  .project-card-link {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .project-card-link:hover .text-link {
+    text-decoration-color: var(--accent);
+  }
+
+  .project-card-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  .card-topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .theme-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+
+  .status-badge {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .status-badge.is-public { color: var(--accent); }
+  .status-badge.is-quiet { color: var(--muted); }
+
+  .project-card p { color: var(--muted); max-width: 66ch; }
+
+  ul { padding-left: 1.1rem; }
+
+  .project-card ul {
+    margin: 8px 0 16px;
+    color: var(--muted);
+    font-size: 0.93rem;
+  }
+
+  .project-card li { margin-bottom: 4px; }
+
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: auto;
+  }
+
+  .text-link {
+    margin-top: 16px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+    text-underline-offset: 0.2em;
+    transition: text-decoration-color var(--transition);
+  }
+
+  /* ── Experience / Education ───────────────────────────────── */
+
+  .split-section {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: var(--space-5);
+  }
+
+  .timeline {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .timeline-item {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--paper);
+    padding: var(--space-3);
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .timeline-item:hover { border-color: var(--accent-border); box-shadow: 0 2px 10px rgba(21,21,21,0.05); }
+
+  .timeline-item p { color: var(--muted); }
+
+  .period {
+    margin: 0 0 8px;
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 750;
+    letter-spacing: 0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .meta {
+    margin: 2px 0 12px;
+    font-size: 0.93rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .meta strong { color: var(--ink); }
+
+  .experience-summary {
+    margin: 0 0 12px;
+    color: var(--ink) !important;
+    font-size: 0.96rem;
+    max-width: 66ch;
+  }
+
+  .timeline-item ul {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.93rem;
+  }
+
+  .timeline-item li { margin-bottom: 5px; }
+
+  .courses {
+    margin: 0 !important;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  /* ── Skills ───────────────────────────────────────────────── */
+
+  .skills-section {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .toolkit-list {
+    display: grid;
+    gap: 24px;
+  }
+
+  .toolkit-row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 24px;
+    align-items: start;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .toolkit-row:last-child { border-bottom: 0; padding-bottom: 0; }
+
+  .toolkit-row h3 {
+    margin: 3px 0 0;
+    color: var(--ink);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+
+  /* ── Additional work ──────────────────────────────────────── */
+
+  .inline-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .inline-list li {
+    border-left: 3px solid var(--accent);
+    padding: 10px 14px;
+    background: color-mix(in srgb, var(--paper) 70%, var(--bg));
+    color: var(--muted);
+    font-size: 0.95rem;
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* ── Footer ───────────────────────────────────────────────── */
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 28px 0 40px;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .footer p { margin: 0; }
+
+  .footer div {
+    display: flex;
+    gap: 16px;
+  }
+
+  /* ── Crawler trap ─────────────────────────────────────────── */
+
+  .crawler-trap {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+
+  @media (max-width: 860px) {
+    .hero-grid,
+    .split-section,
+    .skills-section { grid-template-columns: 1fr; }
+
+    .top-nav {
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .research-grid,
+    .project-grid,
+    .approach-grid,
+    .inline-list { grid-template-columns: 1fr; }
+
+    .toolkit-row { grid-template-columns: 1fr; gap: 10px; }
+  }
+
+  @media (max-width: 520px) {
+    .site-shell { width: min(100% - 24px, 1120px); }
+    .hero { padding-top: 20px; padding-bottom: 52px; }
+    .section { padding: 52px 0; }
+    .button { width: 100%; }
+    .card-topline { flex-direction: column; gap: 3px; }
+    .footer { flex-direction: column; }
+  }
+
+  /* ── Reduced motion ──────────────────────────────────────── */
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; animation: none !important; }
+  }
+
+  /* ── Print ────────────────────────────────────────────────── */
+
+  @media print {
+    /* Hide screen-only interactive elements */
+    .top-nav,
+    .hero-actions,
+    .crawler-trap { display: none !important; }
+
+    /* White backgrounds, no color fills */
+    body { background: #fff; }
+
+    .profile-card,
+    .plain-card,
+    .project-card,
+    .timeline-item {
+      background: #fff;
+      border-color: #ccc;
+      box-shadow: none !important;
+    }
+
+    .inline-list li { background: #f5f5f5; }
+
+    /* Collapse hero to single column for print */
+    .hero-grid { grid-template-columns: 1fr; gap: 20px; }
+    .hero { padding: 12pt 0 28pt; }
+
+    /* Tighter section spacing */
+    .section { padding: 28pt 0; }
+
+    /* Keep multi-column layouts on print if space allows */
+    .research-grid { grid-template-columns: repeat(3, 1fr); }
+    .project-grid { grid-template-columns: repeat(2, 1fr); }
+    .split-section { grid-template-columns: 0.8fr 1.2fr; }
+    .approach-grid { grid-template-columns: repeat(3, 1fr); }
+
+    /* Footer: keep name only; hide social links and footer email
+       (contact email already shown in the profile card above) */
+    .footer div { display: none; }
+
+    /* Force page breaks to avoid orphans */
+    .timeline-item,
+    .project-card,
+    .plain-card { break-inside: avoid; }
+  }
+</style>
