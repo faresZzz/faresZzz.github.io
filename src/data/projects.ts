@@ -37,31 +37,25 @@ export const projects: Project[] = [
     link: 'https://github.com/faresZzz/GPT-2_from_scratch'
   },
   {
-    title: 'Cart-Pole Q-Learning',
-    status: 'Public',
-    theme: 'Reinforcement learning / control',
-    description:
-      'A compact Q-learning project for the Cart-Pole control problem, kept as a small but complete reinforcement learning example.',
-    highlights: [
-      'Implements an agent that learns to balance the pole by choosing cart actions from environment feedback.',
-      'Includes environment handling, a training entry point, utilities, model storage, parameter configuration, figures, and tests.',
-      'A first complete RL project, kept before expanding toward planning and model-based methods.'
-    ],
-    stack: ['Python', 'Q-learning', 'Gymnasium', 'Testing'],
-    link: 'https://github.com/faresZzz/cartPole'
-  },
-  {
     title: 'Vision Transformer from Scratch',
-    status: 'Private',
+    status: 'Public',
     theme: 'Vision architecture fundamentals',
     description:
-      'A private from-scratch Vision Transformer study focused on image patching, self-attention, representation learning, and classification.',
+      'A PyTorch Vision Transformer built from scratch for supervised image classification, masked autoencoding, and DINO-style self-supervised training.',
     highlights: [
-      'Breaks down the mechanics behind transformer-based vision models instead of treating ViT as a ready-made architecture.',
-      'Extends the transformer intuition from the GPT-2 project to image representations.',
-      'Kept private while the implementation and presentation are cleaned up.'
+      'Implements patch embedding, the class token, positional encodings, multi-head self-attention, pre-norm transformer blocks, MAE, and DINO-style student-teacher training.',
+      'Compares learned, sine-cosine, RoPE, and RoPE2D position handling through source modules and walkthrough notebooks.',
+      'Includes YAML experiment configs, checkpoint resume support, saved artifacts, cleaned notebooks, and tests without publishing local data or weights.'
     ],
-    stack: ['Python', 'PyTorch', 'Computer vision', 'Transformers']
+    stack: [
+      'PyTorch',
+      'Vision Transformer',
+      'Computer vision',
+      'MAE',
+      'DINO',
+      'Self-supervised learning'
+    ],
+    link: 'https://github.com/faresZzz/ViT_from_scratch'
   },
   {
     title: 'Stable Diffusion from Scratch',
@@ -76,6 +70,20 @@ export const projects: Project[] = [
     ],
     stack: ['Python', 'PyTorch', 'Diffusion models', 'Computer vision'],
     link: 'https://github.com/faresZzz/Stable_Diffusion_from_scratch'
+  },
+  {
+    title: 'Cart-Pole Q-Learning',
+    status: 'Public',
+    theme: 'Reinforcement learning / control',
+    description:
+      'A compact Q-learning project for the Cart-Pole control problem, kept as a small but complete reinforcement learning example.',
+    highlights: [
+      'Implements an agent that learns to balance the pole by choosing cart actions from environment feedback.',
+      'Includes environment handling, a training entry point, utilities, model storage, parameter configuration, figures, and tests.',
+      'A first complete RL project, kept before expanding toward planning and model-based methods.'
+    ],
+    stack: ['Python', 'Q-learning', 'Gymnasium', 'Testing'],
+    link: 'https://github.com/faresZzz/cartPole'
   },
   {
     title: 'V-JEPA2 ROI Semantic Extraction',
