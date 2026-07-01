@@ -72,18 +72,20 @@ export const projects: Project[] = [
     link: 'https://github.com/faresZzz/Stable_Diffusion_from_scratch'
   },
   {
-    title: 'Cart-Pole Q-Learning',
+    title: 'RL from Scratch',
     status: 'Public',
-    theme: 'Reinforcement learning / control',
+    theme: 'Reinforcement learning / world models',
     description:
-      'A compact Q-learning project for the Cart-Pole control problem, kept as a small but complete reinforcement learning example.',
+      'A from-scratch PyTorch reinforcement-learning curriculum that rebuilds 25 algorithms from tabular Q-learning to latent world models, with course-style notebooks and a shared training runtime.',
     highlights: [
-      'Implements an agent that learns to balance the pole by choosing cart actions from environment feedback.',
-      'Includes environment handling, a training entry point, utilities, model storage, parameter configuration, figures, and tests.',
-      'A first complete RL project, kept before expanding toward planning and model-based methods.'
+      'Each algorithm is treated as a full learning chapter: intuition, math, implementation, and a runnable demo before the code is refactored into a clean package.',
+      'Built a shared registry-based runtime with YAML configs, run artifacts, deterministic evaluation, and a multi-seed benchmark setup for comparing methods across Gymnasium/MuJoCo environments.',
+      'Focuses on readable pedagogical code that still trains: from DQN/Rainbow and PPO/SAC to Dreamer, MuZero, and an action-conditioned JEPA world model using latent CEM/MPC planning.',
+      'Continuous-control runs reached strong HalfCheetah-v5 results under local hardware limits, with SAC/TD3 around 10k return and DDPG around 11k near 1M steps; the model-based notebooks also show the expected sample-efficiency gains on smaller training budgets.'
+
     ],
-    stack: ['Python', 'Q-learning', 'Gymnasium', 'Testing'],
-    link: 'https://github.com/faresZzz/cartPole'
+    stack: ['Python', 'PyTorch', 'Reinforcement learning', 'Model-based RL', 'World models', 'MuJoCo / Gymnasium'],
+    link: 'https://github.com/faresZzz/RL_from_scratch'
   },
   {
     title: 'V-JEPA2 ROI Semantic Extraction',
