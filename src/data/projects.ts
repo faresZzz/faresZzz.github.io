@@ -11,16 +11,18 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: 'Machine Learning from Scratch',
-    status: 'In progress',
-    theme: 'ML fundamentals / reusable library',
+    status: 'Public',
+    theme: 'ML fundamentals / geometric representation learning',
     description:
-      'A notebook and Python library project where I rebuild classical machine learning and deep learning models from the math up, then move the useful pieces into reusable modules.',
+      'A from-scratch machine-learning curriculum: 52 course-style notebooks backed by a scikit-learn-style Python library, running from a hand-written autograd engine to the geometry of learned representations. Each notebook takes one model apart rather than only re-implementing it.',
     highlights: [
-      'Starts with linear regression, logistic regression, k-NN, perceptrons, and MLPs, then extends toward CNNs, transformers, SSMs, reinforcement learning, and optimizers such as SGD, Adam, and AdamW.',
-      'Each topic is developed first in a mathematical notebook, then cleaned into code that can be reused in later models.',
-      'The current local version includes linear regression and k-NN notebooks plus modules for activations, layers, MLPs, utilities, and optimizers.'
+      'Every chapter is written as a full course rather than a code dump: why the family was invented, what each term of the equation means, what each hyperparameter actually controls, and what the experiment shows when the model fails. The recurring question is why one design supersedes another — why convolution fits images better than a dense MLP, why a ViT ends up ahead of a CNN, why GAN instability pushed the field toward score-based and diffusion models.',
+      'Covers the full arc: numerical foundations with a custom Tensor/autograd engine, classical supervised and unsupervised estimators in NumPy, then CNNs, RNN/LSTM, Transformers, state-space models (S4, Mamba), GNNs, and generative modeling (VAE, GAN, contrastive learning, energy-based models (EBM) and score matching, DDPM, flow matching, latent diffusion) in PyTorch.',
+      'Closes on the part my other from-scratch projects never reach: the geometry of representations — manifold learning, Riemannian optimization, optimal transport (Wasserstein/Sinkhorn), information geometry and the natural gradient, hyperbolic embeddings, equivariant networks, and diagnostics such as CKA and intrinsic dimension.',
+      'Shared fit/predict/transform API across 123 modules, and implementations traced back to 196 catalogued research papers.'
     ],
-    stack: ['Python', 'NumPy', 'Jupyter', 'ML algorithms']
+    stack: ['Python', 'NumPy', 'PyTorch', 'Autograd', 'Generative models', 'Geometric deep learning'],
+    link: 'https://github.com/faresZzz/machine_learning_from_scratch'
   },
   {
     title: 'GPT-2 from Scratch',
@@ -80,7 +82,7 @@ export const projects: Project[] = [
     highlights: [
       'Each algorithm is treated as a full learning chapter: intuition, math, implementation, and a runnable demo before the code is refactored into a clean package.',
       'Built a shared registry-based runtime with YAML configs, run artifacts, deterministic evaluation, and a multi-seed benchmark setup for comparing methods across Gymnasium/MuJoCo environments.',
-      'Focuses on readable pedagogical code that still trains: from DQN/Rainbow and PPO/SAC to Dreamer, MuZero, and an action-conditioned JEPA world model using latent CEM/MPC planning.',
+      'Focuses on readable pedagogical code that still trains: from DQN/Rainbow and PPO/SAC to Dreamer, MuZero, and an action-conditioned JEPA world model inspired by V-JEPA 2-AC, using latent CEM/MPC planning.',
       'Continuous-control runs reached strong HalfCheetah-v5 results under local hardware limits, with SAC/TD3 around 10k return and DDPG around 11k near 1M steps; the model-based notebooks also show the expected sample-efficiency gains on smaller training budgets.'
 
     ],
