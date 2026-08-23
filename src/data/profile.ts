@@ -5,8 +5,7 @@ export const profile = {
     "Computer science and machine learning student — MSc at EPFL, Diplôme d'Ingénieur at CPE Lyon.",
   location: 'Lausanne, Switzerland / Lyon, France',
   email: 'zaghouane.fares@gmail.com',
-  displayEmail: 'zaghouane.fares [at] gmail [dot] com',
-  phone: '+33 7 69 37 68 31',
+  displayEmail: 'zaghouane [dot] fares [at] gmail [dot] com',
   github: 'https://github.com/faresZzz',
   linkedin: 'https://linkedin.com/in/fares-zaghouane',
   resume: '/Fares_Zaghouane_Resume.pdf',
@@ -14,65 +13,48 @@ export const profile = {
     'World models',
     'JEPA predictors',
     'Latent dynamical systems',
-    'State-space models',
     'Koopman operators',
-    'Representation learning',
-    'Computer vision',
-    'Reinforcement learning',
+    'State-space models',
+    'Latent geometry',
+    'Energy-based models',
+    'Spiking neuron models',
+    'Formal verification',
     'Planning and control',
   ],
   summary:
-    'Two experiences pushed me toward these questions. At <strong>Apple</strong>, doing formal verification of hardware IPs, I started thinking about systems in terms of reachable states and specifications, and about the gap between what a proof actually covers and what simulation catches. At <strong>Nokia Bell Labs</strong>, building dense focus-map prediction for cloud-gaming video under strict latency constraints, I watched temporal propagation drift whenever the semantic anchor got sparse. Re-anchoring was expensive. That drift stuck with me. In JEPA-style world models, the encoder learns what to represent, but the predictor, the part that moves latent states forward in time, is usually a generic network with no transition structure at all. I want to understand whether giving it more structure would help, and what that might look like in practice.',
-  // Internal narrative anchor — not rendered on the site.
-  // Kept here so summary / research interests / research direction stay consistent
-  // with the full vision. The speculative P5 / alternative-substrate direction
-  // remains private ("Prudent PhD" public posture: ambitious but testable).
-  longTermVision:
-    'My longer-term hypothesis is that part of the computational and energy cost of modern AI comes from the mathematical substrate itself: dense matrix multiplication over standard vector spaces. Rather than treating this only as an engineering optimization problem, I am interested in whether alternative structures can change the scaling behavior of learned world models. For a PhD proposal, I would not start by claiming a full replacement of dense deep learning. I would begin with a narrower and testable question: can JEPA predictors benefit from structured latent dynamics, such as SSM/Mamba-style transitions, Koopman-inspired operators, energy-based constraints, or physics-informed stability terms?',
+    'Two experiences pushed me toward these questions. At <strong>Apple</strong>, doing formal verification of hardware IPs, I learned a stance more than a technique: state precisely what a system must preserve, build the instrument that detects violations, then go looking for where the design actually breaks. At <strong>Nokia Bell Labs</strong>, building dense focus-map prediction for cloud-gaming video under a hard latency budget, I watched temporal propagation drift whenever the semantic anchor got sparse, and re-anchoring was expensive. I met the question I work on now in production before I chose it on paper.',
 };
 
 export const researchDirection = [
   {
-    title: 'Structured predictive world models',
+    title: 'Planning changes the compute bottleneck',
     body:
-      'In JEPA-style models the encoder learns what to represent, but the predictor, the part that governs how latent states evolve, is typically a generic network with no explicit transition structure. I keep wondering whether that matters: does treating the predictor more like a dynamical system change how it behaves over longer rollout horizons, or does the encoder absorb everything anyway?',
+      'In a JEPA world model the encoder maps observations to latents and the predictor moves a latent forward in time. That predictor is usually a generic block, a causal transformer or an MLP, trained end to end and judged by the loss it minimizes. It can learn dynamics; its training loss does not by itself expose the quantities that decide whether long-horizon planning will work &mdash; which latent modes persist, how much margin there is before a rollout destabilizes, which directions the actions actually reach. The cost structure makes this concrete. For a single forward pass, the encoder may dominate the cost. In sampling-based planning the observation is encoded once, then the predictor is rolled over every candidate action sequence, every horizon step and every refinement iteration. That is where an agent that plans spends its compute.',
   },
   {
-    title: 'Operator structure and stable prediction',
+    title: 'A structural prior is a claim about a basis',
     body:
-      'One thing I\'d like to try is giving the predictor more structure, SSM-style transitions, Koopman-inspired observables, or energy-based stability terms, and seeing whether that helps with long-horizon stability without re-anchoring. Holding the encoder and loss fixed and varying only the predictor would at least make the comparison clean.',
+      'The obvious first move is to give the predictor an explicit dynamical structure, the Koopman-style family of rotation-scaling blocks. I tested it on coupled oscillators, chosen because the generator belongs to that family after an appropriate change of basis. With the representation held fixed, the structured predictor loses to a generic one. One contributing mechanism is that the prior is not coordinate-invariant: it constrains the operator <em>in the basis where it is imposed</em>, and the distance from the true generator to the model class runs from machine precision in the system\'s own modal basis to a substantial fraction of the operator norm in the coordinates the model is given. An oracle experiment that supplies the right basis removes much of the penalty without reversing the comparison. These are small-scale runs and I read them as preliminary.',
   },
   {
-    title: 'Vision, control, and real systems',
+    title: 'What I want to measure',
     body:
-      'At Bell Labs I had a real failure mode to look at: strong semantic signal, but propagation that drifted once the anchor got too sparse. At Apple I\'d learned to think about reachable states and about the gap between what a formal proof covers and what testing actually tells you. Both experiences made me want to work on world models in settings where failures show up concretely, not just in benchmark numbers.',
+      'Two predictors can sit at nearly the same training loss and still produce rollouts and action-gradients that behave nothing alike, which is why I would rather measure a predictor than argue about its architecture. The quantities I want are the ones a control engineer would ask for: a spectrum whose modes persist or decay at known rates, a margin before free-running rollouts destabilize, and directions the actions demonstrably reach &mdash; with the diagnostic calibrated against injected faults, so its precision is measured rather than assumed. That is what turns "the plan did not work" from a single scalar into an attributable failure.',
   },
 ];
 
 export const researchFraming =
-  'These are directions I find genuinely promising and want to explore during a PhD. Early-stage interests, not settled results.';
+  'I work on the predictor of a JEPA world model: the module that moves a latent state forward in time and whose behavior shapes whether planning on top of it holds up.';
 
-export const researchApproach = [
-  {
-    label: 'Where I\'d start',
-    body: 'I\'d start with small, controllable dynamics where the comparison between structured and unstructured predictors is actually clean, before moving toward video or planning.',
-  },
-  {
-    label: 'What I\'d like to understand',
-    body: 'I want to know whether operator-like structure in a JEPA predictor, SSM transitions or Koopman observables, actually changes rollout behavior, or whether any gain washes out once the encoder is strong enough.',
-  },
-  {
-    label: 'How I\'d like to grow into it',
-    body: 'Mostly I\'m looking for an environment where I can learn to run cleaner experiments and develop sharper intuitions about when structure matters. That\'s a goal in itself.',
-  },
-];
+export const researchOpening =
+  'The question does not sit inside a single literature. Physics-informed models ask how much of a system\'s dynamics should be built into the architecture; energy-based formulations ask what cost a planner should optimize; and the 2\u00d72 oscillatory block I study is algebraically equivalent, after exact discretization, to the subthreshold dynamics of an adaptive integrate-and-fire neuron. I treat these as sources of structure to test, not as separate research agendas.';
 
 export const experience = [
   {
     company: 'Nokia Bell Labs',
     location: 'Stuttgart, Germany',
     role: 'Predictive Models for Cloud Gaming and Semantic Communication',
-    period: 'Aug 2025 - Jan 2026',
+    period: 'Aug 2025 - Feb 2026',
     summary:
       'Objective: predict dense focus maps from cloud-gaming videos so bandwidth and visual quality can be allocated to the regions that matter most, while staying within strict latency constraints.',
     bullets: [
@@ -104,12 +86,12 @@ export const education = [
     location: 'Lausanne, Switzerland',
     degree: 'Master in Computer Science, Machine Learning specialization',
     period: 'Sept 2023 - Present',
-    courses: ['Artificial Neural Networks and Reinforcement Learning', 'Machine Learning', 'Natural Language Processing', 'Machine Learning in Finance', 'Cryptography and Security'],
+    courses: ['Artificial Neural Networks and Reinforcement Learning', 'Computer Vision', 'Machine Learning', 'Natural Language Processing', 'Machine Learning in Finance', 'Cryptography and Security'],
   },
   {
     school: 'CPE Lyon',
     location: 'Lyon, France',
-    degree: "Diplôme d'Ingénieur (Engineering degree), Computer Science — Software Engineering & Big Data",
+    degree: "Diplôme d'Ingénieur (MSc-equivalent), Computer Science — Software Engineering & Big Data track",
     period: 'Sept 2021 - Present',
     courses: ['Software architecture', 'Design patterns', 'Dynamic web', 'System administration', 'Databases', 'Data mining', 'Embedded systems', 'Quantum computing'],
   },
@@ -125,22 +107,26 @@ export const education = [
 export const skills = [
   {
     category: 'ML and representation learning',
-    items: ['PyTorch', 'TensorFlow', 'Neural networks', 'Self-supervised learning', 'JEPA / world models', 'Energy-based models'],
+    items: ['PyTorch', 'Neural networks', 'Self-supervised learning', 'JEPA / world models', 'Energy-based models', 'Contrastive and hinge objectives'],
+  },
+  {
+    category: 'Dynamics, operators, and control',
+    items: ['Koopman operators', 'State-space models', 'Mamba / S4', 'Exact ZOH discretization', 'Spectral methods', 'LIF / AdEx spiking neurons', 'Reinforcement learning'],
+  },
+  {
+    category: 'Experimental method',
+    items: ['Pre-registration', 'Paired factorial design', 'Positive and negative controls', 'Ablation by elimination', 'Reproducible artifacts and hashing', 'Bootstrap and permutation tests'],
   },
   {
     category: 'Vision and multimodal systems',
     items: ['Computer vision', 'Video understanding', 'Grounding DINO', 'RAFT / optical flow', 'Focus-map prediction', 'Multimodal data pipelines'],
   },
   {
-    category: 'Dynamics, control, and RL',
-    items: ['Reinforcement learning', 'State-space models', 'Mamba', 'Koopman operators', 'Dynamical systems', 'Physics-informed AI'],
-  },
-  {
-    category: 'Mathematical and scientific foundations',
-    items: ['Linear algebra', 'Applied statistics', 'Signal processing', 'Optimization', 'Spectral methods', 'Functional analysis'],
+    category: 'Mathematical foundations',
+    items: ['Linear algebra', 'Dynamical systems', 'Applied statistics', 'Optimization', 'Signal processing', 'Functional analysis'],
   },
   {
     category: 'Software and formal methods',
-    items: ['Python', 'NumPy', 'Jupyter', 'Formal verification', 'Model checking', 'Finite-state machines', 'Verilog / SystemVerilog assertions'],
+    items: ['Python', 'NumPy', 'Formal verification', 'Model checking', 'Finite-state machines', 'Verilog / SystemVerilog assertions'],
   },
 ];

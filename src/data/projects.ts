@@ -10,6 +10,34 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: 'Structured Latent Dynamics',
+    status: 'In progress',
+    theme: 'World models / operator structure in JEPA predictors',
+    description:
+      'Can an explicit dynamical prior make the latent rollouts of a JEPA world model more stable? I test a Koopman-style predictor, 2×2 rotation-scaling blocks, on coupled oscillators: a setting built to give the prior every advantage, since after an appropriate change of basis the true generator belongs to the structured family. The published comparisons hold the representation fixed, and there the structured predictor still loses to a generic one, on two backbones independently. The diagnosis is that a structural prior of the Koopman family is a statement about a basis, not about coordinates.',
+    highlights: [
+      'Runs are paired within backbone, so the two arms share seed, data, rate and compute budget. Least squares recovers the planted operator from the data, so the dynamics I am asking for really do sit inside the model family; training by gradient descent does not reach that solution. Representational capacity and trainability are separate problems.',
+      'Handing the model the true basis as a frozen oracle removes most of the penalty on the MLP backbone, across five seeds on one system. It does not establish an advantage for structure: against the generic predictor the contrast is indeterminate. That basis comes from ground truth, so the arm is a ceiling rather than a competitor. The coupling is a contributing mechanism; it is not sufficient to reverse the sign.',
+      'What the study leaves open is whether the penalty survives when the representation and the structured dynamics are learned together, instead of imposing the prior on coordinates fixed elsewhere. That is the experiment I would run next, and this one cannot settle it.',
+    ],
+    stack: ['JEPA world models', 'Koopman-style operators', 'Latent dynamical systems', 'State-space models', 'Rollout stability', 'Controlled experiments'],
+    link: 'https://github.com/faresZzz/structured-latent-dynamics'
+  },
+  {
+    title: 'Constrained Trace EBM',
+    status: 'In progress',
+    theme: 'Energy-based models / verifiable constraints',
+    description:
+      'Can a learned energy score execution traces while staying accountable to exact temporal properties? I train a specification-conditioned energy model on finite-state-machine traces and evaluate it against a symbolic verifier, with the claims and the decision thresholds fixed before the experiments run. Inspired by the public framing of Logical Intelligence\'s Kona energy-based reasoning model.',
+    highlights: [
+      'The symbolic verifier decides exactly whether a trace satisfies a property, so the labels are exact rather than estimated. A differentiable implementation of the same temporal semantics runs alongside as a control, which separates what can be computed directly from what the learned energy has to infer.',
+      'On machines never seen in training, the bootstrap lower bound on macro-AUROC reaches 0.772 against a floor of 0.75 fixed in advance. The margin is positive but narrow, 0.022, and the frozen compute budget under-trained the arm. An exploratory, post-hoc ablation suggests the model reads its specification rather than the surface of the trace: on the tier where every step is legal and only the whole trace decides, scrambling the property channel drops detection to the level of the control, while scrambling the dynamics channel does not.',
+      'Other claims come out weaker or inconclusive, and I report them that way: the global-versus-local comparison, for one, may be measuring the compute budget rather than the architecture. The open question is whether this energy can become a useful planning cost without giving up the verifiability of the evaluation.',
+    ],
+    stack: ['Energy-based models', 'Formal verification', 'Temporal specifications', 'Finite-state machines', 'Neural algorithmic reasoning', 'Held-out evaluation'],
+    link: 'https://github.com/faresZzz/constrained-trace-ebm'
+  },
+  {
     title: 'Machine Learning from Scratch',
     status: 'Public',
     theme: 'ML fundamentals / geometric representation learning',
@@ -18,7 +46,7 @@ export const projects: Project[] = [
     highlights: [
       'Every chapter is written as a full course rather than a code dump: why the family was invented, what each term of the equation means, what each hyperparameter actually controls, and what the experiment shows when the model fails. The recurring question is why one design supersedes another — why convolution fits images better than a dense MLP, why a ViT ends up ahead of a CNN, why GAN instability pushed the field toward score-based and diffusion models.',
       'Covers the full arc: numerical foundations with a custom Tensor/autograd engine, classical supervised and unsupervised estimators in NumPy, then CNNs, RNN/LSTM, Transformers, state-space models (S4, Mamba), GNNs, and generative modeling (VAE, GAN, contrastive learning, energy-based models (EBM) and score matching, DDPM, flow matching, latent diffusion) in PyTorch.',
-      'Closes on the part my other from-scratch projects never reach: the geometry of representations — manifold learning, Riemannian optimization, optimal transport (Wasserstein/Sinkhorn), information geometry and the natural gradient, hyperbolic embeddings, equivariant networks, and diagnostics such as CKA and intrinsic dimension.',
+      'The last section goes past a standard ML curriculum: the geometry of representations — manifold learning, Riemannian optimization, optimal transport (Wasserstein/Sinkhorn), information geometry and the natural gradient, hyperbolic embeddings, equivariant networks, and diagnostics such as CKA and intrinsic dimension.',
       'Shared fit/predict/transform API across 123 modules, and implementations traced back to 196 catalogued research papers.'
     ],
     stack: ['Python', 'NumPy', 'PyTorch', 'Autograd', 'Generative models', 'Geometric deep learning'],

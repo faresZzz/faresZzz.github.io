@@ -8,3 +8,15 @@ dist/
 # CV: LaTeX sources, build artifacts, and reference material kept local only.
 # The single served PDF (public/Fares_Zaghouane_Resume.pdf) is intentionally tracked.
 /cv/
+.gstack/
+
+# Agent / Spec Kit artifacts (never publish)
+AGENTS.md
+AGENT.md
+CLAUDE.md
+GEMINI.md
+.agents/
+.specify/
+.claude/
+.gstack/
+tmp/

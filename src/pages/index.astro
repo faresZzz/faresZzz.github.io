@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { education, experience, profile, researchDirection, researchFraming, researchApproach, skills } from '../data/profile';
+import { education, experience, profile, researchDirection, researchFraming, researchOpening, skills } from '../data/profile';
 import { otherEngineering, projects } from '../data/projects';
 ---
 
@@ -31,7 +31,7 @@ import { otherEngineering, projects } from '../data/projects';
             </div>
             <div>
               <dt>Email</dt>
-              <dd>{profile.displayEmail}</dd>
+              <dd><a href={`mailto:${profile.email}`} aria-label={`Email ${profile.name}`}>{profile.displayEmail}</a></dd>
             </div>
             <div>
               <dt>GitHub</dt>
@@ -51,7 +51,7 @@ import { otherEngineering, projects } from '../data/projects';
 
     <section id="research" class="section">
       <div class="section-heading">
-        <p class="eyebrow">Research Interests</p>
+        <p class="eyebrow">Research</p>
         <h2>Predictive representations for world models</h2>
         <p class="research-framing">{researchFraming}</p>
       </div>
@@ -59,20 +59,12 @@ import { otherEngineering, projects } from '../data/projects';
         {researchDirection.map((item) => (
           <article class="plain-card">
             <h3>{item.title}</h3>
-            <p>{item.body}</p>
+            <p set:html={item.body} />
           </article>
         ))}
       </div>
-      <div class="research-approach" aria-label="Research approach">
-        <p class="eyebrow-small">Ideas I'd like to explore</p>
-        <div class="approach-grid">
-          {researchApproach.map((item) => (
-            <div class="approach-item">
-              <strong>{item.label}</strong>
-              <p>{item.body}</p>
-            </div>
-          ))}
-        </div>
+      <div class="research-approach">
+        <p class="research-opening">{researchOpening}</p>
       </div>
     </section>
 
@@ -84,7 +76,7 @@ import { otherEngineering, projects } from '../data/projects';
       </div>
       <div class="project-grid">
         {projects.map((project) => {
-          const hasPublicLink = project.status === 'Public' && project.link;
+          const hasPublicLink = Boolean(project.link);
           const cardContent = (
             <>
               <div class="card-topline">
@@ -185,7 +177,7 @@ import { otherEngineering, projects } from '../data/projects';
       <div>
         <a href={profile.github}>GitHub</a>
         <a href={profile.linkedin}>LinkedIn</a>
-        <span>{profile.displayEmail}</span>
+        <a href={`mailto:${profile.email}`} aria-label={`Email ${profile.name}`}>{profile.displayEmail}</a></span>
       </div>
     </footer>
 
@@ -478,6 +470,19 @@ import { otherEngineering, projects } from '../data/projects';
     margin-top: var(--space-4);
     padding-top: var(--space-4);
     border-top: 1px solid var(--line);
+  }
+
+  .profile-card dd a {
+    display: inline-block;
+    padding-block: 4px;
+  }
+
+  .research-opening {
+    margin: 0;
+    max-width: 82ch;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.55;
   }
 
   .approach-grid {
