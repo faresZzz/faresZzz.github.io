@@ -38,6 +38,22 @@ export const projects: Project[] = [
     link: 'https://github.com/faresZzz/constrained-trace-ebm'
   },
   {
+    title: 'RL from Scratch',
+    status: 'Public',
+    theme: 'Reinforcement learning / world models',
+    description:
+      'A from-scratch PyTorch reinforcement-learning curriculum that rebuilds 25 algorithms from tabular Q-learning to latent world models, with course-style notebooks and a shared training runtime.',
+    highlights: [
+      'Each algorithm is treated as a full learning chapter: intuition, math, implementation, and a runnable demo before the code is refactored into a clean package.',
+      'Built a shared registry-based runtime with YAML configs, run artifacts, deterministic evaluation, and a multi-seed benchmark setup for comparing methods across Gymnasium/MuJoCo environments.',
+      'Focuses on readable pedagogical code that still trains: from DQN/Rainbow and PPO/SAC to Dreamer, MuZero, and an action-conditioned JEPA world model inspired by V-JEPA 2-AC, using latent CEM/MPC planning.',
+      'Continuous-control runs reached strong HalfCheetah-v5 results under local hardware limits, with SAC/TD3 around 10k return and DDPG around 11k near 1M steps; the model-based notebooks also show the expected sample-efficiency gains on smaller training budgets.'
+
+    ],
+    stack: ['Python', 'PyTorch', 'Reinforcement learning', 'Model-based RL', 'World models', 'MuJoCo / Gymnasium'],
+    link: 'https://github.com/faresZzz/RL_from_scratch'
+  },
+  {
     title: 'Machine Learning from Scratch',
     status: 'Public',
     theme: 'ML fundamentals / geometric representation learning',
@@ -53,18 +69,17 @@ export const projects: Project[] = [
     link: 'https://github.com/faresZzz/machine_learning_from_scratch'
   },
   {
-    title: 'GPT-2 from Scratch',
-    status: 'Public',
-    theme: 'Transformer language modeling',
+    title: 'V-JEPA2 ROI Semantic Extraction',
+    status: 'Private',
+    theme: 'JEPA / semantic video understanding',
     description:
-      'A PyTorch implementation of a GPT-2-style decoder-only Transformer, written while working through the original Transformer and GPT papers.',
+      'A private research prototype around region-of-interest semantic extraction with V-JEPA-style video representations.',
     highlights: [
-      'Implements tokenization, token and positional embeddings, causal self-attention, multi-head attention, transformer blocks, pretraining, generation, and fine-tuning.',
-      'Written directly against the original papers: Attention Is All You Need, GPT-1, GPT-2, GPT-3, GELU, Self-Instruct, and MMLU.',
-      'The public version includes cleaned notebooks, lightweight figures, a concise README, and a pre-commit hook to keep notebook outputs out of version control.'
+      'Tests how predictive video representations can be organized around meaningful regions rather than only pixels.',
+      'The underlying question is whether predictive representations can be built around semantic regions rather than spatial patches, a problem that came up directly in the Bell Labs work.',
+      'Kept private while the research direction and artifacts are still being refined.'
     ],
-    stack: ['Python', 'PyTorch', 'Transformers', 'Jupyter'],
-    link: 'https://github.com/faresZzz/GPT-2_from_scratch'
+    stack: ['Python', 'PyTorch', 'V-JEPA', 'Computer vision']
   },
   {
     title: 'Vision Transformer from Scratch',
@@ -88,6 +103,20 @@ export const projects: Project[] = [
     link: 'https://github.com/faresZzz/ViT_from_scratch'
   },
   {
+    title: 'GPT-2 from Scratch',
+    status: 'Public',
+    theme: 'Transformer language modeling',
+    description:
+      'A PyTorch implementation of a GPT-2-style decoder-only Transformer, written while working through the original Transformer and GPT papers.',
+    highlights: [
+      'Implements tokenization, token and positional embeddings, causal self-attention, multi-head attention, transformer blocks, pretraining, generation, and fine-tuning.',
+      'Written directly against the original papers: Attention Is All You Need, GPT-1, GPT-2, GPT-3, GELU, Self-Instruct, and MMLU.',
+      'The public version includes cleaned notebooks, lightweight figures, a concise README, and a pre-commit hook to keep notebook outputs out of version control.'
+    ],
+    stack: ['Python', 'PyTorch', 'Transformers', 'Jupyter'],
+    link: 'https://github.com/faresZzz/GPT-2_from_scratch'
+  },
+  {
     title: 'Stable Diffusion from Scratch',
     status: 'Public',
     theme: 'Generative modeling / diffusion',
@@ -102,35 +131,6 @@ export const projects: Project[] = [
     link: 'https://github.com/faresZzz/Stable_Diffusion_from_scratch'
   },
   {
-    title: 'RL from Scratch',
-    status: 'Public',
-    theme: 'Reinforcement learning / world models',
-    description:
-      'A from-scratch PyTorch reinforcement-learning curriculum that rebuilds 25 algorithms from tabular Q-learning to latent world models, with course-style notebooks and a shared training runtime.',
-    highlights: [
-      'Each algorithm is treated as a full learning chapter: intuition, math, implementation, and a runnable demo before the code is refactored into a clean package.',
-      'Built a shared registry-based runtime with YAML configs, run artifacts, deterministic evaluation, and a multi-seed benchmark setup for comparing methods across Gymnasium/MuJoCo environments.',
-      'Focuses on readable pedagogical code that still trains: from DQN/Rainbow and PPO/SAC to Dreamer, MuZero, and an action-conditioned JEPA world model inspired by V-JEPA 2-AC, using latent CEM/MPC planning.',
-      'Continuous-control runs reached strong HalfCheetah-v5 results under local hardware limits, with SAC/TD3 around 10k return and DDPG around 11k near 1M steps; the model-based notebooks also show the expected sample-efficiency gains on smaller training budgets.'
-
-    ],
-    stack: ['Python', 'PyTorch', 'Reinforcement learning', 'Model-based RL', 'World models', 'MuJoCo / Gymnasium'],
-    link: 'https://github.com/faresZzz/RL_from_scratch'
-  },
-  {
-    title: 'V-JEPA2 ROI Semantic Extraction',
-    status: 'Private',
-    theme: 'JEPA / semantic video understanding',
-    description:
-      'A private research prototype around region-of-interest semantic extraction with V-JEPA-style video representations.',
-    highlights: [
-      'Tests how predictive video representations can be organized around meaningful regions rather than only pixels.',
-      'The underlying question is whether predictive representations can be built around semantic regions rather than spatial patches, a problem that came up directly in the Bell Labs work.',
-      'Kept private while the research direction and artifacts are still being refined.'
-    ],
-    stack: ['Python', 'PyTorch', 'V-JEPA', 'Computer vision']
-  },
-  {
     title: 'VLM Data Engine',
     status: 'Private',
     theme: 'Multimodal data systems',
@@ -142,7 +142,8 @@ export const projects: Project[] = [
       'Built to support video understanding and multimodal world-model experiments where data preparation matters as much as model code.'
     ],
     stack: ['Python', 'Video processing', 'Data pipelines', 'VLM tooling']
-  }
+  },
+
 ];
 
 export const otherEngineering = [
