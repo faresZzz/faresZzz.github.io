@@ -14,13 +14,13 @@ export const projects: Project[] = [
     status: 'In progress',
     theme: 'World models / operator structure in JEPA predictors',
     description:
-      'Can an explicit dynamical prior make the latent rollouts of a JEPA world model more stable? I test a Koopman-style predictor, 2×2 rotation-scaling blocks, on coupled oscillators: a setting built to give the prior every advantage, since after an appropriate change of basis the true generator belongs to the structured family. The published comparisons hold the representation fixed, and there the structured predictor still loses to a generic one, on two backbones independently. The diagnosis is that a structural prior of the Koopman family is a statement about a basis, not about coordinates.',
+      'Can an explicit dynamical prior make the latent rollouts of a JEPA world model more stable? I test a Koopman-style predictor, 2×2 rotation-scaling blocks, on coupled oscillators: a setting built to give the prior every advantage, since after an appropriate change of basis the true generator belongs to the structured family. The comparisons run so far hold the representation fixed, and there the structured predictor still loses to a generic one, on two backbones independently (a third, the SSM, is reported but not counted). The diagnosis of this first cycle is that a structural prior of the Koopman family is a statement about a basis, not about coordinates.',
     highlights: [
       'Runs are paired within backbone, so the two arms share seed, data, rate and compute budget. Least squares recovers the planted operator from the data, so the dynamics I am asking for really do sit inside the model family; training by gradient descent does not reach that solution. Representational capacity and trainability are separate problems.',
       'Handing the model the true basis as a frozen oracle removes most of the penalty on the MLP backbone, across five seeds on one system. It does not establish an advantage for structure: against the generic predictor the contrast is indeterminate. That basis comes from ground truth, so the arm is a ceiling rather than a competitor. The coupling is a contributing mechanism; it is not sufficient to reverse the sign.',
       'What the study leaves open is whether the penalty survives when the representation and the structured dynamics are learned together, instead of imposing the prior on coordinates fixed elsewhere. That is the experiment I would run next, and this one cannot settle it.',
     ],
-    stack: ['JEPA world models', 'Koopman-style operators', 'Latent dynamical systems', 'State-space models', 'Rollout stability', 'Controlled experiments'],
+    stack: ['JEPA world models', 'Koopman-style spectral structure', 'Latent dynamical systems', 'State-space models', 'Rollout stability', 'Controlled experiments'],
     link: 'https://github.com/faresZzz/structured-latent-dynamics'
   },
   {
@@ -28,11 +28,12 @@ export const projects: Project[] = [
     status: 'In progress',
     theme: 'Energy-based models / verifiable constraints',
     description:
-      'Can a learned energy score execution traces while staying accountable to exact temporal properties? I train a specification-conditioned energy model on finite-state-machine traces and evaluate it against a symbolic verifier, with the claims and the decision thresholds fixed before the experiments run. Inspired by the public framing of Logical Intelligence\'s Kona energy-based reasoning model.',
+      'Can a learned energy score execution traces of finite-state machines against a temporal specification, when an exact symbolic checker provides the ground truth? I train an energy model that takes the specification as input, on synthetic machines (180 canonical roots, 7 to 10 minimal states each) and evaluate it against the checker, with the decision thresholds fixed before the experiments run. Inspired by the public framing of Logical Intelligence\'s Kona energy-based reasoning model; nothing here reproduces Kona itself.',
     highlights: [
-      'The symbolic verifier decides exactly whether a trace satisfies a property, so the labels are exact rather than estimated. A differentiable implementation of the same temporal semantics runs alongside as a control, which separates what can be computed directly from what the learned energy has to infer.',
-      'On machines never seen in training, the bootstrap lower bound on macro-AUROC reaches 0.772 against a floor of 0.75 fixed in advance. The margin is positive but narrow, 0.022, and the frozen compute budget under-trained the arm. An exploratory, post-hoc ablation suggests the model reads its specification rather than the surface of the trace: on the tier where every step is legal and only the whole trace decides, scrambling the property channel drops detection to the level of the control, while scrambling the dynamics channel does not.',
-      'Other claims come out weaker or inconclusive, and I report them that way: the global-versus-local comparison, for one, may be measuring the compute budget rather than the architecture. The open question is whether this energy can become a useful planning cost without giving up the verifiability of the evaluation.',
+      'The symbolic checker decides exactly whether a trace satisfies a property, so the labels are exact rather than estimated. A differentiable implementation of the same temporal semantics runs alongside as a control, which separates what can be computed directly from what the learned energy has to infer.',
+      'First cycle: on machines never seen in training, detection clears the floor fixed in advance, with a bootstrap lower bound of 0.772 macro-AUROC against 0.75. The comparison that matters is less flattering: a classifier that never sees the properties scores 0.905, above the energy on every tier, so most of that number comes from traces that can be judged without reading the specification.',
+      'A specification-channel ablation shows that the property channel changes the score. It does not show that the trace representation is conditioned on the specification: in this architecture the properties never reach the trace encoder. The finer-grained claims (ranking within a specification, localisation, global versus local scoring) do not pass yet, and I report them that way.',
+      'The next cycle targets the tier that cannot be decided without the specification, where a deadline is missed while every step stays legal. Whether this energy can become a useful planning cost is not established yet.',
     ],
     stack: ['Energy-based models', 'Formal verification', 'Temporal specifications', 'Finite-state machines', 'Neural algorithmic reasoning', 'Held-out evaluation'],
     link: 'https://github.com/faresZzz/constrained-trace-ebm'
@@ -47,7 +48,7 @@ export const projects: Project[] = [
       'Each algorithm is treated as a full learning chapter: intuition, math, implementation, and a runnable demo before the code is refactored into a clean package.',
       'Built a shared registry-based runtime with YAML configs, run artifacts, deterministic evaluation, and a multi-seed benchmark setup for comparing methods across Gymnasium/MuJoCo environments.',
       'Focuses on readable pedagogical code that still trains: from DQN/Rainbow and PPO/SAC to Dreamer, MuZero, and an action-conditioned JEPA world model inspired by V-JEPA 2-AC, using latent CEM/MPC planning.',
-      'Continuous-control runs reached strong HalfCheetah-v5 results under local hardware limits, with SAC/TD3 around 10k return and DDPG around 11k near 1M steps; the model-based notebooks also show the expected sample-efficiency gains on smaller training budgets.'
+      'On HalfCheetah-v5, SAC and TD3 reach about 10k return and DDPG about 11k near 1M environment steps, on local hardware and without tuned multi-seed sweeps. The model-based and world-model methods train and show their mechanism; where a result is only partial, the notebooks say so.'
 
     ],
     stack: ['Python', 'PyTorch', 'Reinforcement learning', 'Model-based RL', 'World models', 'MuJoCo / Gymnasium'],
@@ -60,10 +61,10 @@ export const projects: Project[] = [
     description:
       'A from-scratch machine-learning curriculum: 52 course-style notebooks backed by a scikit-learn-style Python library, running from a hand-written autograd engine to the geometry of learned representations. Each notebook takes one model apart rather than only re-implementing it.',
     highlights: [
-      'Every chapter is written as a full course rather than a code dump: why the family was invented, what each term of the equation means, what each hyperparameter actually controls, and what the experiment shows when the model fails. The recurring question is why one design supersedes another — why convolution fits images better than a dense MLP, why a ViT ends up ahead of a CNN, why GAN instability pushed the field toward score-based and diffusion models.',
+      'Every chapter is written as a full course rather than a code dump: why the family was invented, what each term of the equation means, what each hyperparameter actually controls, and what the experiment shows when the model fails. The recurring question is why one design supersedes another — why convolution fits images better than a dense MLP, why a ViT can overtake a CNN once data is plentiful, why GAN instability pushed the field toward score-based and diffusion models.',
       'Covers the full arc: numerical foundations with a custom Tensor/autograd engine, classical supervised and unsupervised estimators in NumPy, then CNNs, RNN/LSTM, Transformers, state-space models (S4, Mamba), GNNs, and generative modeling (VAE, GAN, contrastive learning, energy-based models (EBM) and score matching, DDPM, flow matching, latent diffusion) in PyTorch.',
       'The last section goes past a standard ML curriculum: the geometry of representations — manifold learning, Riemannian optimization, optimal transport (Wasserstein/Sinkhorn), information geometry and the natural gradient, hyperbolic embeddings, equivariant networks, and diagnostics such as CKA and intrinsic dimension.',
-      'Shared fit/predict/transform API across 123 modules, and implementations traced back to 196 catalogued research papers.'
+      'Shared fit/predict/transform API across 123 modules, and implementations traced back to 196 catalogued references.'
     ],
     stack: ['Python', 'NumPy', 'PyTorch', 'Autograd', 'Generative models', 'Geometric deep learning'],
     link: 'https://github.com/faresZzz/machine_learning_from_scratch'

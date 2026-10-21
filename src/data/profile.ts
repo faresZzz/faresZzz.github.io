@@ -1,9 +1,9 @@
 export const profile = {
   name: 'Farès Zaghouane',
-  role: 'AI / Machine Learning Research Profile',
+  role: 'Machine Learning Engineer',
   headline:
-    "Computer science and machine learning student — MSc at EPFL, Diplôme d'Ingénieur at CPE Lyon.",
-  location: 'Lausanne, Switzerland / Lyon, France',
+    "Machine learning engineer working on world models — MSc in Computer Science (Machine Learning) from EPFL, Diplôme d'Ingénieur from CPE Lyon, 2026.",
+  location: 'Lyon, France',
   email: 'zaghouane.fares@gmail.com',
   displayEmail: 'zaghouane [dot] fares [at] gmail [dot] com',
   github: 'https://github.com/faresZzz',
@@ -13,7 +13,7 @@ export const profile = {
     'World models',
     'JEPA predictors',
     'Latent dynamical systems',
-    'Koopman operators',
+    'Koopman-style spectral structure',
     'State-space models',
     'Latent geometry',
     'Energy-based models',
@@ -39,7 +39,7 @@ export const researchDirection = [
   {
     title: 'What I want to measure',
     body:
-      'Two predictors can sit at nearly the same training loss and still produce rollouts and action-gradients that behave nothing alike, which is why I would rather measure a predictor than argue about its architecture. The quantities I want are the ones a control engineer would ask for: a spectrum whose modes persist or decay at known rates, a margin before free-running rollouts destabilize, and directions the actions demonstrably reach &mdash; with the diagnostic calibrated against injected faults, so its precision is measured rather than assumed. That is what turns "the plan did not work" from a single scalar into an attributable failure.',
+      'Two predictors can sit at nearly the same training loss and still produce rollouts and action-gradients that behave nothing alike, which is why I would rather measure a predictor than argue about its architecture. The quantities I want are the ones a control engineer would ask for: modes that persist or decay at known rates, a margin before free-running rollouts destabilize, and directions the actions demonstrably reach &mdash; with the diagnostic calibrated against injected faults, so its precision is measured rather than assumed. That is what turns "the plan did not work" from a single scalar into an attributable failure.',
   },
 ];
 
@@ -47,35 +47,35 @@ export const researchFraming =
   'I work on the predictor of a JEPA world model: the module that moves a latent state forward in time and whose behavior shapes whether planning on top of it holds up.';
 
 export const researchOpening =
-  'The question does not sit inside a single literature. Physics-informed models ask how much of a system\'s dynamics should be built into the architecture; energy-based formulations ask what cost a planner should optimize; and the 2\u00d72 oscillatory block I study is algebraically equivalent, after exact discretization, to the subthreshold dynamics of an adaptive integrate-and-fire neuron. I treat these as sources of structure to test, not as separate research agendas.';
+  'The question does not sit inside a single literature. Physics-informed models ask how much of a system\'s dynamics should be built into the architecture; energy-based formulations ask what cost a planner should optimize; and the 2\u00d72 oscillatory block I study is algebraically equivalent, after exact discretization, to the subthreshold dynamics of an adaptive integrate-and-fire neuron, threshold and reset excluded. I treat these as sources of structure to test, not as separate research agendas.';
 
 export const experience = [
   {
     company: 'Nokia Bell Labs',
     location: 'Stuttgart, Germany',
-    role: 'Predictive Models for Cloud Gaming and Semantic Communication',
+    role: 'Research Intern (MSc thesis) · Predictive models for cloud gaming',
     period: 'Aug 2025 - Feb 2026',
     summary:
-      'Objective: predict dense focus maps from cloud-gaming videos so bandwidth and visual quality can be allocated to the regions that matter most, while staying within strict latency constraints.',
+      'An under-specified research problem from the start: the first question was not which model to use, but what the system should predict and how to measure whether it helps. The target became dense focus maps predicted from cloud-gaming video, so bandwidth and visual quality go to the regions that matter, within a strict per-frame latency budget.',
     bullets: [
-      'Ran experiments with JEPA-style latent prediction, state-space models, and Mamba Vision encoders before settling on a hybrid architecture that met the real-time latency budget while staying close to the accuracy of the expensive semantic-only signal.',
-      'Built a teacher-student video prediction pipeline combining semantic anchoring, temporal propagation, and local refinement: Grounding DINO for semantic cues, RAFT for optical-flow propagation, and a lightweight correction network for dense focus maps.',
-      'Designed the pseudo-supervision setup, tracked temporal drift across pipeline modes, and built the evaluation protocol for dense-map outputs.',
-      'Evaluation on varied game videos showed the hybrid recovered most of the semantic-only signal\'s quality at a fraction of its cost, and clearly beat the low-cost motion- and saliency-only baselines.',
+      'No dataset existed for the task. With the team, I spent several weeks building a metric that makes training possible without hand-annotated ground truth, together with a data engine that first fine-tunes a VLM to annotate the data, which gave us a working dataset without months of manual labeling.',
+      'The approach chosen first was a JEPA-style model that propagates the latent state to predict the next focus maps directly. It was dropped under the per-frame latency, compute and dataset-size constraints, and the teacher-student pipeline below is what came out of that constraint.',
+      'Built the teacher-student video prediction pipeline: Grounding DINO for semantic anchoring, RAFT optical flow for temporal propagation, and a lightweight correction network for the dense focus maps. Along the way I also tried state-space models and Mamba Vision encoders, and kept a hybrid that met the real-time latency budget while staying close to the accuracy of the expensive semantic-only signal.',
+      'Designed the pseudo-supervision setup, tracked temporal drift across pipeline modes, and built the evaluation protocol for dense maps. The hybrid recovered most of the semantic-only quality at a fraction of its cost and beat the motion-only and saliency-only baselines.',
     ],
   },
   {
     company: 'Apple',
     location: 'Munich, Germany',
-    role: 'Formal Verification of Hardware IPs',
+    role: 'Design Verification Research Intern · Formal verification of hardware IPs',
     period: 'Oct 2022 - Jul 2023',
     summary:
-      'Objective: generalize formal verification workflows for hardware IPs by describing state transitions from input/output events at a higher abstraction level than cycle-by-cycle RTL timing.',
+      'Objective: generalize formal verification workflows for hardware IPs by describing state transitions from input/output events, at a higher abstraction level than cycle-by-cycle RTL timing.',
     bullets: [
-      'Modeled IP behavior with finite-state machines and event-based abstractions so long-running processes could be reasoned about without expanding every low-level timing step.',
-      'Used model checking to reason about behaviors that simulation cannot cover exhaustively; working with formal properties changed how I think about reachable states, specifications, and what it means for a system to fail.',
-      'Built Python tooling that generates Verilog/SystemVerilog assertions from high-level specifications, connecting abstract property definitions to industrial verification workflows.',
-      'Tested the workflow on industrial designs; the key finding was that FSM-level specifications can drive model-checker inputs directly, with tradeoffs against hand-written properties that are clearer to reason about.',
+      'Modeled IP behavior with finite-state machines and event-based abstractions, so long-running processes could be reasoned about without expanding every low-level timing step.',
+      'Used model checking for behaviors that simulation cannot cover exhaustively; working with formal properties changed how I think about reachable states, specifications, and what it means for a system to fail.',
+      'Built Python tooling that generates Verilog/SystemVerilog assertions from high-level specifications, and validated it on industrial designs: FSM-level specifications feed the model checker directly.',
+      'The event-based abstraction sets the level at which reachable states are specified. Model checking operates there rather than at the cycle level, which changed which properties were practical to verify.',
     ],
   },
 ];
@@ -85,14 +85,14 @@ export const education = [
     school: 'École Polytechnique Fédérale de Lausanne (EPFL)',
     location: 'Lausanne, Switzerland',
     degree: 'Master in Computer Science, Machine Learning specialization',
-    period: 'Sept 2023 - Present',
+    period: 'Sept 2023 - 2026',
     courses: ['Artificial Neural Networks and Reinforcement Learning', 'Computer Vision', 'Machine Learning', 'Natural Language Processing', 'Machine Learning in Finance', 'Cryptography and Security'],
   },
   {
     school: 'CPE Lyon',
     location: 'Lyon, France',
     degree: "Diplôme d'Ingénieur (MSc-equivalent), Computer Science — Software Engineering & Big Data track",
-    period: 'Sept 2021 - Present',
+    period: 'Sept 2021 - 2026',
     courses: ['Software architecture', 'Design patterns', 'Dynamic web', 'System administration', 'Databases', 'Data mining', 'Embedded systems', 'Quantum computing'],
   },
   {
@@ -111,11 +111,11 @@ export const skills = [
   },
   {
     category: 'Dynamics, operators, and control',
-    items: ['Koopman operators', 'State-space models', 'Mamba / S4', 'Exact ZOH discretization', 'Spectral methods', 'LIF / AdEx spiking neurons', 'Reinforcement learning'],
+    items: ['Koopman-style spectral constraints', 'State-space models', 'Mamba / S4', 'Exact ZOH discretization', 'Spectral methods', 'Reinforcement learning'],
   },
   {
     category: 'Experimental method',
-    items: ['Pre-registration', 'Paired factorial design', 'Positive and negative controls', 'Ablation by elimination', 'Reproducible artifacts and hashing', 'Bootstrap and permutation tests'],
+    items: ['Paired factorial design', 'Positive and negative controls', 'Ablation by elimination', 'Reproducible artifacts and hashing', 'Bootstrap and permutation tests'],
   },
   {
     category: 'Vision and multimodal systems',
