@@ -2,7 +2,7 @@ export const profile = {
   name: 'Farès Zaghouane',
   role: 'Machine Learning Engineer',
   headline:
-    "Machine learning engineer working on world models — MSc in Computer Science (Machine Learning) from EPFL, Diplôme d'Ingénieur from CPE Lyon, 2026.",
+    'Machine learning engineer working on world models and the predictors inside them.',
   location: 'Lyon, France',
   email: 'zaghouane.fares@gmail.com',
   displayEmail: 'zaghouane [dot] fares [at] gmail [dot] com',
@@ -93,14 +93,56 @@ export const education = [
     location: 'Lyon, France',
     degree: "Diplôme d'Ingénieur (MSc-equivalent), Computer Science — Software Engineering & Big Data track",
     period: 'Sept 2021 - 2026',
-    courses: ['Software architecture', 'Design patterns', 'Dynamic web', 'System administration', 'Databases', 'Data mining', 'Embedded systems', 'Quantum computing'],
+    courses: [],
   },
   {
     school: 'CPE Lyon',
     location: 'Lyon, France',
     degree: 'Licence in Computer Science and Electronics',
     period: 'Sept 2020 - Sept 2021',
-    courses: ['Linear algebra', 'Algorithms', 'Digital and analog electronics', 'Discrete and continuous mathematics', 'Signal processing', 'Quantum mechanics'],
+    courses: [],
+  },
+];
+
+export const selfLearningIntro =
+  'My degrees gave me the foundations. Most of the machine learning I use today, I learned on my own, project by project: I chose something to build, read the original papers behind it, and pulled in parts of public lectures (Karpathy, Stanford, MIT) where I needed them, writing the mathematics out myself rather than relying on libraries. Each line below is one thing I set out to learn, and the project that shows it.';
+
+export const selfLearning = [
+  {
+    topic: 'The machine learning canon',
+    how: 'Rebuilt from a hand-written autograd engine up to diffusion, optimal transport and the geometry of representations: 52 course notebooks, a 123-module library, and 196 catalogued references behind them.',
+    project: 'Machine Learning from Scratch',
+    link: 'https://github.com/faresZzz/machine_learning_from_scratch',
+  },
+  {
+    topic: 'Transformers and language models',
+    how: 'Wrote a GPT-2-style model against Attention Is All You Need and the GPT-1, GPT-2 and GPT-3 papers, from tokenization to pretraining, generation and fine-tuning.',
+    project: 'GPT-2 from Scratch',
+    link: 'https://github.com/faresZzz/GPT-2_from_scratch',
+  },
+  {
+    topic: 'Vision and self-supervised learning',
+    how: 'Built a Vision Transformer for supervised, masked-autoencoder and DINO-style training, and compared four ways of encoding position (learned, sine-cosine, RoPE, RoPE2D).',
+    project: 'Vision Transformer from Scratch',
+    link: 'https://github.com/faresZzz/ViT_from_scratch',
+  },
+  {
+    topic: 'Generative models',
+    how: 'Reconstructed latent diffusion as a system: VAE, CLIP-style text conditioning, U-Net denoiser and DDPM sampler, each traced back to its paper.',
+    project: 'Stable Diffusion from Scratch',
+    link: 'https://github.com/faresZzz/Stable_Diffusion_from_scratch',
+  },
+  {
+    topic: 'Reinforcement learning and world models',
+    how: 'Implemented 25 algorithms on one shared runtime, from tabular Q-learning to Dreamer, MuZero and an action-conditioned JEPA world model that plans with CEM.',
+    project: 'RL from Scratch',
+    link: 'https://github.com/faresZzz/RL_from_scratch',
+  },
+  {
+    topic: 'Doing research end to end',
+    how: 'Two research projects run on my own, from the question to the protocol, the code and the write-up, with the negative results published alongside the positive ones.',
+    project: 'Research projects',
+    link: '#research',
   },
 ];
 
