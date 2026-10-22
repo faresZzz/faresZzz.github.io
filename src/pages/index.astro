@@ -18,7 +18,7 @@ import '../styles/site.css';
       <div class="hero-grid">
         <div>
           <h1>{profile.name}</h1>
-          <p class="role-line">{profile.role} <span aria-hidden="true">·</span> {profile.credential}</p>
+          <p class="role-line">{profile.role} <span aria-hidden="true">·</span> <span class="credential">{profile.credential}</span></p>
           <p class="lead">{profile.headline}</p>
           <p class="summary" set:html={profile.summary} />
           <div class="hero-actions" aria-label="Profile links">

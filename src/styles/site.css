@@ -706,7 +706,8 @@ ul { padding-left: 1.1rem; }
   letter-spacing: 0.01em;
 }
 
-.role-line span { color: var(--muted); font-weight: 400; margin: 0 0.25em; }
+.role-line span[aria-hidden] { color: var(--muted); font-weight: 400; margin: 0 0.25em; }
+.role-line .credential { white-space: nowrap; }
 
 /* ── Industry version ─────────────────────────────────────── */
 
@@ -811,7 +812,9 @@ ul { padding-left: 1.1rem; }
 }
 
 @media (max-width: 520px) {
-  .key-figures { grid-template-columns: 1fr; }
+  .key-figures { gap: 10px; }
+  .key-figures li { padding: 14px; }
+  .key-figures span { font-size: 0.84rem; }
   .card-topline h3 { order: 2; }
 }
 
