@@ -1,0 +1,145 @@
+// Industry version of the site (/industry/). Same facts as profile.ts and projects.ts,
+// told for a hiring manager: experience and results first, plain-language context, research summarized.
+
+export const industryProfile = {
+  resume: '/industry/Fares_Zaghouane_Resume.pdf',
+  headline:
+    'Machine learning research engineer working across deep learning, computer vision, reinforcement learning and formal verification. I like starting from an open problem and ending with something that runs.',
+  summary:
+    'At <strong>Nokia Bell Labs</strong> I built a video model for cloud gaming that predicts which parts of each frame matter to the player, so bandwidth can go there, starting from a problem with no dataset and no agreed metric. At <strong>Apple</strong> I built Python tooling that turns high-level specifications into formal checks for hardware designs. On my own time I rebuild the methods I use from the papers and the mathematics up, which is how I learned most of what I know.',
+  lookingFor:
+    'I am looking for research engineer and machine learning engineer roles in teams that do AI research.',
+};
+
+export const keyFigures = [
+  { value: '2', label: 'industrial research internships, at Nokia Bell Labs and Apple' },
+  { value: '~5×', label: 'cheaper video pipeline than running the semantic model on every frame' },
+  { value: '12 games', label: 'about two hours of gameplay labeled by a data engine I built' },
+  { value: '25', label: 'reinforcement-learning algorithms rebuilt from scratch, up to Dreamer and MuZero' },
+];
+
+export const industryExperience = [
+  {
+    company: 'Nokia Bell Labs',
+    location: 'Stuttgart, Germany',
+    role: 'Research Intern (MSc thesis) · Video prediction for cloud gaming',
+    period: 'Aug 2025 - Feb 2026',
+    plain:
+      'Cloud gaming streams the game as video, and bandwidth is limited. The model predicts which parts of each frame matter to the player, so the encoder can spend its bits there.',
+    bullets: [
+      'Started from an open problem, with no dataset and no agreed way to measure success. With my supervisor, I designed a metric that makes training possible without hand-labeled data.',
+      'Built the data engine on my own: about 2,000 hand-annotated keyframes were used to fine-tune a vision-language model, which then labeled about two hours of gameplay from 12 games across four genres, without months of manual labeling.',
+      'Built the prediction pipeline: Grounding DINO for the semantics, RAFT optical flow for motion, and a lightweight correction network. The heavy semantic model runs on one frame in eight, which makes the pipeline about 5× cheaper while keeping more than 80% of the semantic-only overlap score, and it beats the motion-only and saliency-only baselines.',
+      'Tried a JEPA-style predictor first and dropped it under the latency, compute and data constraints. The final design came out of that trade-off.',
+    ],
+    team: 'Team of three: two research engineers and me.',
+  },
+  {
+    company: 'Apple',
+    location: 'Munich, Germany',
+    role: 'Design Verification Research Intern · Formal verification of hardware',
+    period: 'Oct 2022 - Jul 2023',
+    plain:
+      'A bug in a chip is very expensive to fix once it is manufactured, so designs are checked mathematically before. The project aimed to let engineers write those checks at a higher level than individual clock cycles.',
+    bullets: [
+      'Built a Python framework that turns finite-state-machine specifications into Verilog and SystemVerilog assertions for a commercial model checker.',
+      'Applied it to several industrial designs that had already been verified by hand, with bugs injected on purpose to test it.',
+      'Modeled hardware behavior with event-based abstractions, so long-running processes can be checked without expanding every clock cycle.',
+    ],
+    team: 'A research project inside a 30-person design-verification team, carried out mainly by me with one engineer supervising.',
+  },
+];
+
+export const industryProjects = [
+  {
+    title: 'RL from Scratch',
+    status: 'Public',
+    plain: 'A reinforcement-learning library and course, written from the papers.',
+    result:
+      '25 algorithms on one shared runtime, from Q-learning to PPO, SAC, Dreamer and MuZero. On HalfCheetah-v5, SAC and TD3 reach about 10k return and DDPG about 11k near 1M steps.',
+    stack: ['PyTorch', 'Reinforcement learning', 'World models', 'MuJoCo / Gymnasium'],
+    link: 'https://github.com/faresZzz/RL_from_scratch',
+  },
+  {
+    title: 'Machine Learning from Scratch',
+    status: 'Public',
+    plain: 'Machine learning rebuilt from a hand-written autograd engine up, as a course and a library.',
+    result:
+      '52 course notebooks and a 123-module scikit-learn-style library, from classical estimators to Transformers, state-space models, diffusion and optimal transport.',
+    stack: ['Python', 'NumPy', 'PyTorch', 'Generative models'],
+    link: 'https://github.com/faresZzz/machine_learning_from_scratch',
+  },
+  {
+    title: 'Structured Latent Dynamics',
+    status: 'In progress',
+    plain:
+      'Research question: does giving the predictor of a world model an explicit dynamical structure make its long-horizon predictions more stable?',
+    result:
+      'So far, no. On two backbones the structured predictor loses to a generic one, and part of the gap traces back to the choice of coordinates. The negative results are reported as they are.',
+    stack: ['JEPA world models', 'Dynamical systems', 'Controlled experiments'],
+    link: 'https://github.com/faresZzz/structured-latent-dynamics',
+  },
+  {
+    title: 'Constrained Trace EBM',
+    status: 'In progress',
+    plain:
+      'Research question: can a learned energy score whether the execution of a system respects a formal specification?',
+    result:
+      'On machines never seen in training, detection clears the threshold fixed in advance (0.772 against 0.75). A baseline that ignores the specification still scores higher (0.905), so the next cycle targets the cases that need it.',
+    stack: ['Energy-based models', 'Formal verification', 'Held-out evaluation'],
+    link: 'https://github.com/faresZzz/constrained-trace-ebm',
+  },
+  {
+    title: 'GPT-2 from Scratch',
+    status: 'Public',
+    plain: 'A GPT-2-style language model written from the original papers.',
+    result: 'Tokenization, causal multi-head attention, pretraining, generation and fine-tuning, in PyTorch.',
+    stack: ['PyTorch', 'Transformers', 'Language models'],
+    link: 'https://github.com/faresZzz/GPT-2_from_scratch',
+  },
+  {
+    title: 'Stable Diffusion from Scratch',
+    status: 'Public',
+    plain: 'Latent diffusion rebuilt as a system, to understand it rather than just run a checkpoint.',
+    result: 'VAE, CLIP-style text conditioning, U-Net denoiser and DDPM sampler, each traced back to its paper.',
+    stack: ['PyTorch', 'Diffusion models', 'Computer vision'],
+    link: 'https://github.com/faresZzz/Stable_Diffusion_from_scratch',
+  },
+];
+
+export const industrySkills = [
+  {
+    category: 'Programming and tools',
+    items: ['Python', 'PyTorch', 'NumPy', 'TensorFlow', 'Git', 'Linux', 'Jupyter'],
+  },
+  {
+    category: 'AI and machine learning',
+    items: ['Deep learning', 'Computer vision', 'Video understanding', 'Self-supervised learning', 'Transformers', 'Diffusion models', 'Reinforcement learning'],
+  },
+  {
+    category: 'Models and systems',
+    items: ['World models (JEPA)', 'State-space models (S4, Mamba)', 'Dynamical systems', 'Energy-based models', 'Vision-language model fine-tuning'],
+  },
+  {
+    category: 'Verification and method',
+    items: ['Formal verification', 'Model checking', 'Finite-state machines', 'SystemVerilog assertions', 'Controlled experiments and ablations', 'Bootstrap statistics'],
+  },
+];
+
+export const industryLearningIntro =
+  'Most of what I use, I learned on my own, project by project: I chose something to build, read the original papers behind it, and wrote the mathematics out myself rather than relying on libraries.';
+
+export const industryEducation = [
+  {
+    school: 'EPFL',
+    location: 'Lausanne, Switzerland',
+    degree: 'MSc in Computer Science, Machine Learning specialization',
+    period: '2023 - 2026',
+  },
+  {
+    school: 'CPE Lyon',
+    location: 'Lyon, France',
+    degree: "Diplôme d'Ingénieur, Computer Science (Software Engineering & Big Data)",
+    period: '2021 - 2026',
+  },
+];

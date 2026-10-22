@@ -5,19 +5,20 @@ import { otherEngineering, projects } from '../data/projects';
 import '../styles/site.css';
 ---
 
-<BaseLayout title="Farès Zaghouane — AI / ML Research Profile">
+<BaseLayout title="Farès Zaghouane — Machine Learning Research Engineer">
   <main class="site-shell">
     <header class="hero">
       <nav class="top-nav" aria-label="Primary navigation">
         <a href="#research">Research</a>
-        <a href="#projects">Projects</a>
         <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
         <a href="#learning">Learning</a>
       </nav>
 
       <div class="hero-grid">
         <div>
           <h1>{profile.name}</h1>
+          <p class="role-line">{profile.role} <span aria-hidden="true">·</span> {profile.credential}</p>
           <p class="lead">{profile.headline}</p>
           <p class="summary" set:html={profile.summary} />
           <div class="hero-actions" aria-label="Profile links">
@@ -41,6 +42,10 @@ import '../styles/site.css';
             <div>
               <dt>LinkedIn</dt>
               <dd><a href={profile.linkedin}>linkedin.com/in/fares-zaghouane</a></dd>
+            </div>
+            <div>
+              <dt>Languages</dt>
+              <dd>{profile.languages.join(' · ')}</dd>
             </div>
           </dl>
           <div class="tag-list" aria-label="Research interests">
@@ -66,6 +71,26 @@ import '../styles/site.css';
       </div>
       <div class="research-approach">
         <p class="research-opening">{researchOpening}</p>
+      </div>
+    </section>
+
+    <section id="experience" class="section split-section">
+      <div class="section-heading">
+        <p class="eyebrow">Experience</p>
+        <h2>Research and engineering experience</h2>
+      </div>
+      <div class="timeline">
+        {experience.map((item) => (
+          <article class="timeline-item">
+            <p class="period">{item.period}</p>
+            <h3>{item.role}</h3>
+            <p class="meta"><strong>{item.company}</strong> · {item.location}</p>
+            <p class="experience-summary">{item.summary}</p>
+            <ul>
+              {item.bullets.map((bullet) => <li>{bullet}</li>)}
+            </ul>
+          </article>
+        ))}
       </div>
     </section>
 
@@ -109,25 +134,6 @@ import '../styles/site.css';
       </div>
     </section>
 
-    <section id="experience" class="section split-section">
-      <div class="section-heading">
-        <p class="eyebrow">Experience</p>
-        <h2>Research and engineering experience</h2>
-      </div>
-      <div class="timeline">
-        {experience.map((item) => (
-          <article class="timeline-item">
-            <p class="period">{item.period}</p>
-            <h3>{item.role}</h3>
-            <p class="meta"><strong>{item.company}</strong> · {item.location}</p>
-            <p class="experience-summary">{item.summary}</p>
-            <ul>
-              {item.bullets.map((bullet) => <li>{bullet}</li>)}
-            </ul>
-          </article>
-        ))}
-      </div>
-    </section>
 
     <section class="section skills-section">
       <div>
