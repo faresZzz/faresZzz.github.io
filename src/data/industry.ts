@@ -100,7 +100,7 @@ export const industryProjects = [
   {
     title: 'Stable Diffusion from Scratch',
     status: 'Public',
-    plain: 'Latent diffusion rebuilt as a system, to understand it rather than just run a checkpoint.',
+    plain: 'Latent diffusion rebuilt piece by piece, to see how it actually works.',
     result: 'VAE, CLIP-style text conditioning, U-Net denoiser and DDPM sampler, each traced back to its paper.',
     stack: ['PyTorch', 'Diffusion models', 'Computer vision'],
     link: 'https://github.com/faresZzz/Stable_Diffusion_from_scratch',
@@ -127,7 +127,7 @@ export const industrySkills = [
 ];
 
 export const industryLearningIntro =
-  'Most of what I use, I learned on my own, project by project: I chose something to build, read the original papers behind it, and wrote the mathematics out myself rather than relying on libraries.';
+  'Most of what I use, I learned on my own, project by project: I chose something to build, read the original papers behind it, and worked the mathematics out myself instead of treating the library as a black box.';
 
 export const industryEducation = [
   {
