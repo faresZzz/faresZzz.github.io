@@ -1,26 +1,11 @@
 ---
-const { title = 'Farès Zaghouane', robots } = Astro.props;
-
-const canonicalUrl = 'https://fareszzz.github.io/';
-const ogTitle = 'Farès Zaghouane — AI / ML Research Profile';
-const ogDescription =
-  'I work on the predictor of JEPA world models: the module that moves a latent state forward in time, and the one whose behavior decides whether planning on top of it holds up. Research internships at Nokia Bell Labs and Apple.';
-
-const jsonLd = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Farès Zaghouane',
-  url: canonicalUrl,
-  email: 'zaghouane.fares@gmail.com',
-  sameAs: [
-    'https://github.com/faresZzz',
-    'https://www.linkedin.com/in/fares-zaghouane',
-  ],
-  alumniOf: [
-    { '@type': 'EducationalOrganization', name: 'EPFL' },
-    { '@type': 'EducationalOrganization', name: 'CPE Lyon' },
-  ],
-  knowsAbout: [
+const {
+  title = 'Farès Zaghouane',
+  robots,
+  path = '/',
+  ogTitle = 'Farès Zaghouane — Machine Learning Research Engineer',
+  description = 'I work on the predictor of JEPA world models: the module that moves a latent state forward in time, and the one whose behavior decides whether planning on top of it holds up. Research internships at Nokia Bell Labs and Apple.',
+  knowsAbout = [
     'World models',
     'JEPA predictors',
     'Representation learning',
@@ -30,6 +15,27 @@ const jsonLd = JSON.stringify({
     'Koopman-style spectral constraints',
     'Formal verification',
   ],
+} = Astro.props;
+
+const canonicalUrl = new URL(path, 'https://fareszzz.github.io').href;
+const ogDescription = description;
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Farès Zaghouane',
+  url: canonicalUrl,
+  jobTitle: 'Machine Learning Research Engineer',
+  email: 'zaghouane.fares@gmail.com',
+  sameAs: [
+    'https://github.com/faresZzz',
+    'https://www.linkedin.com/in/fares-zaghouane',
+  ],
+  alumniOf: [
+    { '@type': 'EducationalOrganization', name: 'EPFL' },
+    { '@type': 'EducationalOrganization', name: 'CPE Lyon' },
+  ],
+  knowsAbout,
 });
 ---
 

@@ -1,14 +1,16 @@
 export const profile = {
   name: 'Farès Zaghouane',
-  role: 'Machine Learning Engineer',
+  role: 'Machine Learning Research Engineer',
+  credential: 'MSc EPFL',
   headline:
-    'Machine learning engineer working on world models and the predictors inside them.',
+    'Machine learning research engineer working across deep learning, computer vision, reinforcement learning, dynamical systems and formal verification, now focused on world models and the predictors inside them.',
   location: 'Lyon, France',
   email: 'zaghouane.fares@gmail.com',
   displayEmail: 'zaghouane [dot] fares [at] gmail [dot] com',
   github: 'https://github.com/faresZzz',
   linkedin: 'https://linkedin.com/in/fares-zaghouane',
   resume: '/Fares_Zaghouane_Resume.pdf',
+  languages: ['French (native)', 'English (C1, Cambridge CAE)'],
   researchInterests: [
     'World models',
     'JEPA predictors',
@@ -56,12 +58,12 @@ export const experience = [
     role: 'Research Intern (MSc thesis) · Predictive models for cloud gaming',
     period: 'Aug 2025 - Feb 2026',
     summary:
-      'An under-specified research problem from the start: the first question was not which model to use, but what the system should predict and how to measure whether it helps. The target became dense focus maps predicted from cloud-gaming video, so bandwidth and visual quality go to the regions that matter, within a strict per-frame latency budget.',
+      'An under-specified research problem from the start: the first question was not which model to use, but what the system should predict and how to measure whether it helps. The target became dense focus maps predicted from cloud-gaming video, so bandwidth and visual quality go to the regions that matter, within a strict per-frame latency budget. A team of three: two research engineers supervising, and me.',
     bullets: [
-      'No dataset existed for the task. With the team, I spent several weeks building a metric that makes training possible without hand-annotated ground truth, together with a data engine that first fine-tunes a VLM to annotate the data, which gave us a working dataset without months of manual labeling.',
+      'No dataset existed for the task. With my supervisor, I spent several weeks designing a metric that makes training possible without hand-annotated ground truth. I built the data engine on my own: about 2,000 hand-annotated keyframes were used to fine-tune a vision-language model, which then produced the labels for the corpus (about two hours of gameplay from 12 games across four genres) without months of manual labeling.',
       'The approach chosen first was a JEPA-style model that propagates the latent state to predict the next focus maps directly. It was dropped under the per-frame latency, compute and dataset-size constraints, and the teacher-student pipeline below is what came out of that constraint.',
-      'Built the teacher-student video prediction pipeline: Grounding DINO for semantic anchoring, RAFT optical flow for temporal propagation, and a lightweight correction network for the dense focus maps. Along the way I also tried state-space models and Mamba Vision encoders, and kept a hybrid that met the real-time latency budget while staying close to the accuracy of the expensive semantic-only signal.',
-      'Designed the pseudo-supervision setup, tracked temporal drift across pipeline modes, and built the evaluation protocol for dense maps. The hybrid recovered most of the semantic-only quality at a fraction of its cost and beat the motion-only and saliency-only baselines.',
+      'Built the teacher-student video prediction pipeline: Grounding DINO for semantic anchoring, RAFT optical flow for temporal propagation, and a lightweight correction network for the dense focus maps. Along the way I also tried state-space models and Mamba Vision encoders. The hybrid I kept was built for the real-time budget: the heavy semantic model runs on one frame in eight and motion carries the maps in between, which makes the pipeline about 5× cheaper than running the semantic model on every frame.',
+      'Designed the pseudo-supervision setup, tracked temporal drift across pipeline modes, and built the evaluation protocol for dense maps. The hybrid kept more than 80% of the semantic-only overlap score at about a fifth of its cost, and beat the motion-only and saliency-only baselines.',
     ],
   },
   {
@@ -70,11 +72,11 @@ export const experience = [
     role: 'Design Verification Research Intern · Formal verification of hardware IPs',
     period: 'Oct 2022 - Jul 2023',
     summary:
-      'Objective: generalize formal verification workflows for hardware IPs by describing state transitions from input/output events, at a higher abstraction level than cycle-by-cycle RTL timing.',
+      'Objective: generalize formal verification workflows for hardware IPs by describing state transitions from input/output events, at a higher abstraction level than cycle-by-cycle RTL timing. A research project inside a 30-person design-verification team, carried out mainly by me with one engineer supervising.',
     bullets: [
       'Modeled IP behavior with finite-state machines and event-based abstractions, so long-running processes could be reasoned about without expanding every low-level timing step.',
       'Used model checking for behaviors that simulation cannot cover exhaustively; working with formal properties changed how I think about reachable states, specifications, and what it means for a system to fail.',
-      'Built Python tooling that generates Verilog/SystemVerilog assertions from high-level specifications, and validated it on industrial designs: FSM-level specifications feed the model checker directly.',
+      'Built Python tooling that generates Verilog/SystemVerilog assertions from high-level specifications: FSM-level specifications feed the model checker directly. I applied it to several industrial designs that had already been verified by hand, with bugs injected on purpose to test it.',
       'The event-based abstraction sets the level at which reachable states are specified. Model checking operates there rather than at the cycle level, which changed which properties were practical to verify.',
     ],
   },
