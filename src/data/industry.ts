@@ -13,8 +13,8 @@ export const industryProfile = {
 
 export const keyFigures = [
   { value: '2', label: 'industrial research internships, at Nokia Bell Labs and Apple' },
-  { value: '~5×', label: 'cheaper video pipeline than running the semantic model on every frame' },
-  { value: '12 games', label: 'about two hours of gameplay labeled by a data engine I built' },
+  { value: '~5×', label: 'estimated cost cut, versus running the semantic model on every frame' },
+  { value: '12 games', label: 'about two hours of gameplay labeled automatically by a data engine I built' },
   { value: '25', label: 'reinforcement-learning algorithms rebuilt from scratch, up to Dreamer and MuZero' },
 ];
 
@@ -22,14 +22,14 @@ export const industryExperience = [
   {
     company: 'Nokia Bell Labs',
     location: 'Stuttgart, Germany',
-    role: 'Research Intern (MSc thesis) · Video prediction for cloud gaming',
+    role: 'Research Intern (MSc thesis) · Focus-map prediction for cloud gaming',
     period: 'Aug 2025 - Feb 2026',
     plain:
       'Cloud gaming streams the game as video, and bandwidth is limited. The model predicts which parts of each frame matter to the player, so the encoder can spend its bits there.',
     bullets: [
       'Started from an open problem, with no dataset and no agreed way to measure success. With my supervisor, I designed a metric that makes training possible without hand-labeled data.',
-      'Built the data engine on my own: about 2,000 hand-annotated keyframes were used to fine-tune a vision-language model, which then labeled about two hours of gameplay from 12 games across four genres, without months of manual labeling.',
-      'Built the prediction pipeline: Grounding DINO for the semantics, RAFT optical flow for motion, and a lightweight correction network. The heavy semantic model runs on one frame in eight, which makes the pipeline about 5× cheaper while keeping more than 80% of the semantic-only overlap score, and it beats the motion-only and saliency-only baselines.',
+      'Built the data engine on my own: about 2,000 keyframes annotated semi-manually (clicks plus generated masks) were used to fine-tune a vision-language model that drives an automatic labeling pipeline for about two hours of gameplay from 12 games across four genres, without months of manual labeling.',
+      'Built the prediction pipeline: Grounding DINO for the semantics, RAFT optical flow for motion, and a lightweight correction network. The heavy semantic model runs on one frame in eight, which makes the pipeline about 5× cheaper by my estimate. It beats the motion-only and saliency-only baselines, though it stays below the semantic model run on every frame, and it does not reach real time yet.',
       'Tried a JEPA-style predictor first and dropped it under the latency, compute and data constraints. The final design came out of that trade-off.',
     ],
     team: 'Team of three: two research engineers and me.',
@@ -43,7 +43,7 @@ export const industryExperience = [
       'A bug in a chip is very expensive to fix once it is manufactured, so designs are checked mathematically before. The project aimed to let engineers write those checks at a higher level than individual clock cycles.',
     bullets: [
       'Built a Python framework that turns finite-state-machine specifications into Verilog and SystemVerilog assertions for a commercial model checker.',
-      'Applied it to several industrial designs that had already been verified by hand, with bugs injected on purpose to test it.',
+      'Applied it to several industrial designs that had already been verified by hand, with bugs injected on purpose to test it. Coverage stayed below the hand-written checks, mainly because data signals were not modeled yet.',
       'Modeled hardware behavior with event-based abstractions, so long-running processes can be checked without expanding every clock cycle.',
     ],
     team: 'A research project inside a 30-person design-verification team, carried out mainly by me with one engineer supervising.',

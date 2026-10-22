@@ -36,7 +36,7 @@ export const researchDirection = [
   {
     title: 'A structural prior is a claim about a basis',
     body:
-      'The obvious first move is to give the predictor an explicit dynamical structure, the Koopman-style family of rotation-scaling blocks. I tested it on coupled oscillators, chosen because the generator belongs to that family after an appropriate change of basis. With the representation held fixed, the structured predictor loses to a generic one. One contributing mechanism is that the prior is not coordinate-invariant: it constrains the operator <em>in the basis where it is imposed</em>, and the distance from the true generator to the model class runs from machine precision in the system\'s own modal basis to a substantial fraction of the operator norm in the coordinates the model is given. An oracle experiment that supplies the right basis removes much of the penalty without reversing the comparison. These are small-scale runs and I read them as preliminary.',
+      'The obvious first move is to give the predictor an explicit dynamical structure, the Koopman-style family of rotation-scaling blocks. I tested it on coupled oscillators, chosen because the generator belongs to that family after an appropriate change of basis. With the representation held fixed, the structured predictor loses to a generic one. One contributing mechanism is that the prior is not coordinate-invariant: it constrains the operator <em>in the basis where it is imposed</em>, and the distance from the true generator to the model class runs from machine precision in the system\'s own modal basis to a substantial fraction of the operator norm in the coordinates the model is given. An oracle experiment that supplies the right basis removes part of the penalty without reversing the comparison. These are small-scale runs and I read them as preliminary.',
   },
   {
     title: 'What I want to measure',
@@ -60,10 +60,10 @@ export const experience = [
     summary:
       'An under-specified research problem from the start: the first question was not which model to use, but what the system should predict and how to measure whether it helps. The target became dense focus maps predicted from cloud-gaming video, so bandwidth and visual quality go to the regions that matter, within a strict per-frame latency budget. A team of three: two research engineers supervising, and me.',
     bullets: [
-      'No dataset existed for the task. With my supervisor, I spent several weeks designing a metric that makes training possible without hand-annotated ground truth. I built the data engine on my own: about 2,000 hand-annotated keyframes were used to fine-tune a vision-language model, which then produced the labels for the corpus (about two hours of gameplay from 12 games across four genres) without months of manual labeling.',
+      'No dataset existed for the task. With my supervisor, I spent several weeks designing a metric that makes training possible without hand-annotated ground truth. I built the data engine on my own: about 2,000 keyframes annotated semi-manually (clicks plus generated masks) were used to fine-tune a vision-language model that drives an automatic labeling pipeline for the corpus (about two hours of gameplay from 12 games across four genres), without months of manual labeling.',
       'The approach chosen first was a JEPA-style model that propagates the latent state to predict the next focus maps directly. It was dropped under the per-frame latency, compute and dataset-size constraints, and the teacher-student pipeline below is what came out of that constraint.',
-      'Built the teacher-student video prediction pipeline: Grounding DINO for semantic anchoring, RAFT optical flow for temporal propagation, and a lightweight correction network for the dense focus maps. Along the way I also tried state-space models and Mamba Vision encoders. The hybrid I kept was built for the real-time budget: the heavy semantic model runs on one frame in eight and motion carries the maps in between, which makes the pipeline about 5× cheaper than running the semantic model on every frame.',
-      'Designed the pseudo-supervision setup, tracked temporal drift across pipeline modes, and built the evaluation protocol for dense maps. The hybrid kept more than 80% of the semantic-only overlap score at about a fifth of its cost, and beat the motion-only and saliency-only baselines.',
+      'Built the teacher-student focus-map prediction pipeline: Grounding DINO for semantic anchoring, RAFT optical flow for temporal propagation, and a lightweight correction network for the dense focus maps. Along the way I also tried state-space models and Mamba Vision encoders. The hybrid I kept was designed to bring the cost down toward a real-time budget, which it does not reach yet: the heavy semantic model runs on one frame in eight and motion carries the maps in between, about 5× cheaper by my estimate than running the semantic model on every frame.',
+      'Designed the pseudo-supervision setup, tracked temporal drift across pipeline modes, and built the evaluation protocol for dense maps. On overlap with the pseudo-labels, the hybrid lands between the motion-only baseline and the semantic-only model, at about a fifth of the cost of the latter, and beats the motion-only and saliency-only baselines.',
     ],
   },
   {
@@ -76,7 +76,7 @@ export const experience = [
     bullets: [
       'Modeled IP behavior with finite-state machines and event-based abstractions, so long-running processes could be reasoned about without expanding every low-level timing step.',
       'Used model checking for behaviors that simulation cannot cover exhaustively; working with formal properties changed how I think about reachable states, specifications, and what it means for a system to fail.',
-      'Built Python tooling that generates Verilog/SystemVerilog assertions from high-level specifications: FSM-level specifications feed the model checker directly. I applied it to several industrial designs that had already been verified by hand, with bugs injected on purpose to test it.',
+      'Built Python tooling that generates Verilog/SystemVerilog assertions from high-level specifications: FSM-level specifications feed the model checker directly. I applied it to several industrial designs that had already been verified by hand, with bugs injected on purpose to test it. Coverage stayed below the hand-written properties, mainly because data signals were not modeled yet.',
       'The event-based abstraction sets the level at which reachable states are specified. Model checking operates there rather than at the cycle level, which changed which properties were practical to verify.',
     ],
   },
@@ -142,7 +142,7 @@ export const selfLearning = [
   },
   {
     topic: 'Doing research end to end',
-    how: 'Two research projects run on my own, from the question to the protocol, the code and the write-up, with the negative results published alongside the positive ones.',
+    how: 'Two research projects, still in progress, run on my own from the question to the protocol and the code, with negative results reported as they come.',
     project: 'Research projects',
     link: '#research',
   },
