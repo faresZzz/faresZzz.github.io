@@ -4,9 +4,9 @@
 export const industryProfile = {
   resume: '/industry/Fares_Zaghouane_Resume.pdf',
   headline:
-    'Machine learning research engineer working across deep learning, computer vision, reinforcement learning and formal verification. I like starting from an open problem and ending with something that runs.',
+    'I take open machine learning problems and turn them into systems that run. My work spans deep learning, computer vision, reinforcement learning and formal verification.',
   summary:
-    'At <strong>Nokia Bell Labs</strong> I built a video model for cloud gaming that predicts which parts of each frame matter to the player, so bandwidth can go there, starting from a problem with no dataset and no agreed metric. At <strong>Apple</strong> I built Python tooling that turns high-level specifications into formal checks for hardware designs. On my own time I rebuild the methods I use from the papers and the mathematics up, which is how I learned most of what I know.',
+    'At <strong>Nokia Bell Labs</strong> I started from a problem with no dataset and no agreed metric, and built a video pipeline for cloud gaming that predicts which parts of each frame matter to the player, so bandwidth can go there. At <strong>Apple</strong> I built Python tooling that turns high-level specifications into formal checks for hardware designs. On my own time I rebuild the methods I use from the papers and the mathematics up, which is how I learned most of what I know.',
   lookingFor:
     'I am looking for research engineer and machine learning engineer roles in teams that do AI research.',
 };

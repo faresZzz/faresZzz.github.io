@@ -3,7 +3,7 @@ export const profile = {
   role: 'Machine Learning Research Engineer',
   credential: 'MSc EPFL',
   headline:
-    'Machine learning research engineer working across deep learning, computer vision, reinforcement learning, dynamical systems and formal verification, now focused on world models and the predictors inside them.',
+    'I work on world models, and especially on the predictor inside them. I come to it from deep learning, computer vision, reinforcement learning, dynamical systems and formal verification.',
   location: 'Lyon, France',
   email: 'zaghouane.fares@gmail.com',
   displayEmail: 'zaghouane [dot] fares [at] gmail [dot] com',
@@ -24,7 +24,7 @@ export const profile = {
     'Planning and control',
   ],
   summary:
-    'Two experiences pushed me toward these questions. At <strong>Apple</strong>, doing formal verification of hardware IPs, I learned a stance more than a technique: state precisely what a system must preserve, build the instrument that detects violations, then go looking for where the design actually breaks. At <strong>Nokia Bell Labs</strong>, building dense focus-map prediction for cloud-gaming video under a hard latency budget, I watched temporal propagation drift whenever the semantic anchor got sparse, and re-anchoring was expensive. I met the question I work on now in production before I chose it on paper.',
+    'Two experiences pushed me toward this question. At <strong>Apple</strong>, doing formal verification of hardware IPs, I learned a stance more than a technique: state precisely what a system must preserve, build the instrument that detects violations, then go looking for where the design actually breaks. At <strong>Nokia Bell Labs</strong>, building dense focus-map prediction for cloud-gaming video with a hard latency budget as the target, I watched temporal propagation drift whenever the semantic anchor got sparse, and re-anchoring was expensive. I met the question I work on now in practice before I chose it on paper.',
 };
 
 export const researchDirection = [
@@ -58,7 +58,7 @@ export const experience = [
     role: 'Research Intern (MSc thesis) · Predictive models for cloud gaming',
     period: 'Aug 2025 - Feb 2026',
     summary:
-      'An under-specified research problem from the start: the first question was not which model to use, but what the system should predict and how to measure whether it helps. The target became dense focus maps predicted from cloud-gaming video, so bandwidth and visual quality go to the regions that matter, within a strict per-frame latency budget. A team of three: two research engineers supervising, and me.',
+      'An under-specified research problem from the start: the first question was not which model to use, but what the system should predict and how to measure whether it helps. The target became dense focus maps predicted from cloud-gaming video, so bandwidth and visual quality go to the regions that matter. The design aimed at a strict per-frame latency budget. A team of three: two research engineers supervising, and me.',
     bullets: [
       'No dataset existed for the task. With my supervisor, I spent several weeks designing a metric that makes training possible without hand-annotated ground truth. I built the data engine on my own: about 2,000 keyframes annotated semi-manually (clicks plus generated masks) were used to fine-tune a vision-language model that drives an automatic labeling pipeline for the corpus (about two hours of gameplay from 12 games across four genres), without months of manual labeling.',
       'The approach chosen first was a JEPA-style model that propagates the latent state to predict the next focus maps directly. It was dropped under the per-frame latency, compute and dataset-size constraints, and the teacher-student pipeline below is what came out of that constraint.',
