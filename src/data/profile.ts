@@ -1,14 +1,16 @@
 export const profile = {
   name: 'Farès Zaghouane',
-  role: 'Machine Learning Engineer',
+  role: 'Machine Learning Research Engineer',
+  credential: 'MSc EPFL',
   headline:
-    'Machine learning engineer working on world models and the predictors inside them.',
+    'I work on world models, and especially on the predictor inside them. I come to it from deep learning, computer vision, reinforcement learning, dynamical systems and formal verification.',
   location: 'Lyon, France',
   email: 'zaghouane.fares@gmail.com',
   displayEmail: 'zaghouane [dot] fares [at] gmail [dot] com',
   github: 'https://github.com/faresZzz',
   linkedin: 'https://linkedin.com/in/fares-zaghouane',
   resume: '/Fares_Zaghouane_Resume.pdf',
+  languages: ['French (native)', 'English (C1, Cambridge CAE)'],
   researchInterests: [
     'World models',
     'JEPA predictors',
@@ -22,24 +24,24 @@ export const profile = {
     'Planning and control',
   ],
   summary:
-    'Two experiences pushed me toward these questions. At <strong>Apple</strong>, doing formal verification of hardware IPs, I learned a stance more than a technique: state precisely what a system must preserve, build the instrument that detects violations, then go looking for where the design actually breaks. At <strong>Nokia Bell Labs</strong>, building dense focus-map prediction for cloud-gaming video under a hard latency budget, I watched temporal propagation drift whenever the semantic anchor got sparse, and re-anchoring was expensive. I met the question I work on now in production before I chose it on paper.',
+    'Two experiences pushed me toward this question. At <strong>Apple</strong>, doing formal verification of hardware IPs, I learned a stance more than a technique: state precisely what a system must preserve, build the instrument that detects violations, then go looking for where the design actually breaks. At <strong>Nokia Bell Labs</strong>, building dense focus-map prediction for cloud-gaming video with a hard latency budget as the target, I watched temporal propagation drift whenever the semantic anchor got sparse, and re-anchoring was expensive. I met the question I work on now in practice before I chose it on paper.',
 };
 
 export const researchDirection = [
   {
     title: 'Planning changes the compute bottleneck',
     body:
-      'In a JEPA world model the encoder maps observations to latents and the predictor moves a latent forward in time. That predictor is usually a generic block, a causal transformer or an MLP, trained end to end and judged by the loss it minimizes. It can learn dynamics; its training loss does not by itself expose the quantities that decide whether long-horizon planning will work &mdash; which latent modes persist, how much margin there is before a rollout destabilizes, which directions the actions actually reach. The cost structure makes this concrete. For a single forward pass, the encoder may dominate the cost. In sampling-based planning the observation is encoded once, then the predictor is rolled over every candidate action sequence, every horizon step and every refinement iteration. That is where an agent that plans spends its compute.',
+      'In a JEPA world model the encoder maps observations to latents and the predictor moves a latent forward in time. That predictor is usually a generic block, a causal transformer or an MLP, trained end to end and judged by the loss it minimizes. It can learn dynamics; its training loss does not by itself expose the quantities that decide whether long-horizon planning will work: which latent modes persist, how much margin there is before a rollout destabilizes, which directions the actions actually reach. The cost structure makes this concrete. For a single forward pass, the encoder may dominate the cost. In sampling-based planning the observation is encoded once, then the predictor is rolled over every candidate action sequence, every horizon step and every refinement iteration. That is where an agent that plans spends its compute.',
   },
   {
     title: 'A structural prior is a claim about a basis',
     body:
-      'The obvious first move is to give the predictor an explicit dynamical structure, the Koopman-style family of rotation-scaling blocks. I tested it on coupled oscillators, chosen because the generator belongs to that family after an appropriate change of basis. With the representation held fixed, the structured predictor loses to a generic one. One contributing mechanism is that the prior is not coordinate-invariant: it constrains the operator <em>in the basis where it is imposed</em>, and the distance from the true generator to the model class runs from machine precision in the system\'s own modal basis to a substantial fraction of the operator norm in the coordinates the model is given. An oracle experiment that supplies the right basis removes much of the penalty without reversing the comparison. These are small-scale runs and I read them as preliminary.',
+      'The obvious first move is to give the predictor an explicit dynamical structure, the Koopman-style family of rotation-scaling blocks. I tested it on coupled oscillators, chosen because the generator belongs to that family after an appropriate change of basis. With the representation held fixed, the structured predictor loses to a generic one. One contributing mechanism is that the prior is not coordinate-invariant: it constrains the operator <em>in the basis where it is imposed</em>, and the distance from the true generator to the model class runs from machine precision in the system\'s own modal basis to a substantial fraction of the operator norm in the coordinates the model is given. An oracle experiment that supplies the right basis removes part of the penalty without reversing the comparison. These are small-scale runs and I read them as preliminary.',
   },
   {
     title: 'What I want to measure',
     body:
-      'Two predictors can sit at nearly the same training loss and still produce rollouts and action-gradients that behave nothing alike, which is why I would rather measure a predictor than argue about its architecture. The quantities I want are the ones a control engineer would ask for: modes that persist or decay at known rates, a margin before free-running rollouts destabilize, and directions the actions demonstrably reach &mdash; with the diagnostic calibrated against injected faults, so its precision is measured rather than assumed. That is what turns "the plan did not work" from a single scalar into an attributable failure.',
+      'Two predictors can sit at nearly the same training loss and still produce rollouts and action-gradients that behave nothing alike, which is why I would rather measure a predictor than argue about its architecture. The quantities I want are the ones a control engineer would ask for: modes that persist or decay at known rates, a margin before free-running rollouts destabilize, and directions the actions demonstrably reach, with the diagnostic calibrated against injected faults, so its precision is measured rather than assumed. That is what turns "the plan did not work" from a single scalar into an attributable failure.',
   },
 ];
 
@@ -56,12 +58,12 @@ export const experience = [
     role: 'Research Intern (MSc thesis) · Predictive models for cloud gaming',
     period: 'Aug 2025 - Feb 2026',
     summary:
-      'An under-specified research problem from the start: the first question was not which model to use, but what the system should predict and how to measure whether it helps. The target became dense focus maps predicted from cloud-gaming video, so bandwidth and visual quality go to the regions that matter, within a strict per-frame latency budget.',
+      'An under-specified research problem from the start: the first question was not which model to use, but what the system should predict and how to measure whether it helps. The target became dense focus maps predicted from cloud-gaming video, so bandwidth and visual quality go to the regions that matter. The design aimed at a strict per-frame latency budget. A team of three: two research engineers supervising, and me.',
     bullets: [
-      'No dataset existed for the task. With the team, I spent several weeks building a metric that makes training possible without hand-annotated ground truth, together with a data engine that first fine-tunes a VLM to annotate the data, which gave us a working dataset without months of manual labeling.',
+      'No dataset existed for the task. With my supervisor, I spent several weeks designing a metric that makes training possible without hand-annotated ground truth. I built the data engine on my own: about 2,000 keyframes annotated semi-manually (clicks plus generated masks) were used to fine-tune a vision-language model that drives an automatic labeling pipeline for the corpus (about two hours of gameplay from 12 games across four genres), without months of manual labeling.',
       'The approach chosen first was a JEPA-style model that propagates the latent state to predict the next focus maps directly. It was dropped under the per-frame latency, compute and dataset-size constraints, and the teacher-student pipeline below is what came out of that constraint.',
-      'Built the teacher-student video prediction pipeline: Grounding DINO for semantic anchoring, RAFT optical flow for temporal propagation, and a lightweight correction network for the dense focus maps. Along the way I also tried state-space models and Mamba Vision encoders, and kept a hybrid that met the real-time latency budget while staying close to the accuracy of the expensive semantic-only signal.',
-      'Designed the pseudo-supervision setup, tracked temporal drift across pipeline modes, and built the evaluation protocol for dense maps. The hybrid recovered most of the semantic-only quality at a fraction of its cost and beat the motion-only and saliency-only baselines.',
+      'Built the teacher-student focus-map prediction pipeline: Grounding DINO for semantic anchoring, RAFT optical flow for temporal propagation, and a lightweight correction network for the dense focus maps. Along the way I also tried state-space models and Mamba Vision encoders. The hybrid I kept was designed to bring the cost down toward a real-time budget, which it does not reach yet: the heavy semantic model runs on one frame in eight and motion carries the maps in between, about 5× cheaper by my estimate than running the semantic model on every frame.',
+      'Designed the pseudo-supervision setup, tracked temporal drift across pipeline modes, and built the evaluation protocol for dense maps. On overlap with the pseudo-labels, the hybrid lands between the motion-only baseline and the semantic-only model, at about a fifth of the cost of the latter, and beats the motion-only and saliency-only baselines.',
     ],
   },
   {
@@ -70,11 +72,11 @@ export const experience = [
     role: 'Design Verification Research Intern · Formal verification of hardware IPs',
     period: 'Oct 2022 - Jul 2023',
     summary:
-      'Objective: generalize formal verification workflows for hardware IPs by describing state transitions from input/output events, at a higher abstraction level than cycle-by-cycle RTL timing.',
+      'Objective: generalize formal verification workflows for hardware IPs by describing state transitions from input/output events, at a higher abstraction level than cycle-by-cycle RTL timing. A research project inside a 30-person design-verification team, carried out mainly by me with one engineer supervising.',
     bullets: [
       'Modeled IP behavior with finite-state machines and event-based abstractions, so long-running processes could be reasoned about without expanding every low-level timing step.',
       'Used model checking for behaviors that simulation cannot cover exhaustively; working with formal properties changed how I think about reachable states, specifications, and what it means for a system to fail.',
-      'Built Python tooling that generates Verilog/SystemVerilog assertions from high-level specifications, and validated it on industrial designs: FSM-level specifications feed the model checker directly.',
+      'Built Python tooling that generates Verilog/SystemVerilog assertions from high-level specifications: FSM-level specifications feed the model checker directly. I applied it to several industrial designs that had already been verified by hand, with bugs injected on purpose to test it. Coverage stayed below the hand-written properties, mainly because data signals were not modeled yet.',
       'The event-based abstraction sets the level at which reachable states are specified. Model checking operates there rather than at the cycle level, which changed which properties were practical to verify.',
     ],
   },
@@ -91,7 +93,7 @@ export const education = [
   {
     school: 'CPE Lyon',
     location: 'Lyon, France',
-    degree: "Diplôme d'Ingénieur (MSc-equivalent), Computer Science — Software Engineering & Big Data track",
+    degree: "Diplôme d'Ingénieur (MSc-equivalent), Computer Science, Software Engineering & Big Data track",
     period: 'Sept 2021 - 2026',
     courses: [],
   },
@@ -140,7 +142,7 @@ export const selfLearning = [
   },
   {
     topic: 'Doing research end to end',
-    how: 'Two research projects run on my own, from the question to the protocol, the code and the write-up, with the negative results published alongside the positive ones.',
+    how: 'Two research projects, still in progress, run on my own from the question to the protocol and the code, with negative results reported as they come.',
     project: 'Research projects',
     link: '#research',
   },

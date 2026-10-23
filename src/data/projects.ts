@@ -17,7 +17,7 @@ export const projects: Project[] = [
       'Can an explicit dynamical prior make the latent rollouts of a JEPA world model more stable? I test a Koopman-style predictor, 2×2 rotation-scaling blocks, on coupled oscillators: a setting built to give the prior every advantage, since after an appropriate change of basis the true generator belongs to the structured family. The comparisons run so far hold the representation fixed, and there the structured predictor still loses to a generic one, on two backbones independently (a third, the SSM, is reported but not counted). The diagnosis of this first cycle is that a structural prior of the Koopman family is a statement about a basis, not about coordinates.',
     highlights: [
       'Runs are paired within backbone, so the two arms share seed, data, rate and compute budget. Least squares recovers the planted operator from the data, so the dynamics I am asking for really do sit inside the model family; training by gradient descent does not reach that solution. Representational capacity and trainability are separate problems.',
-      'Handing the model the true basis as a frozen oracle removes most of the penalty on the MLP backbone, across five seeds on one system. It does not establish an advantage for structure: against the generic predictor the contrast is indeterminate. That basis comes from ground truth, so the arm is a ceiling rather than a competitor. The coupling is a contributing mechanism; it is not sufficient to reverse the sign.',
+      'Handing the model the true basis as a frozen oracle removes part of the penalty on the MLP backbone, across five seeds on one system. It does not establish an advantage for structure: against the generic predictor the contrast is indeterminate. That basis comes from ground truth, so the arm is a ceiling rather than a competitor. The coupling is a contributing mechanism; it is not sufficient to reverse the sign.',
       'What the study leaves open is whether the penalty survives when the representation and the structured dynamics are learned together, instead of imposing the prior on coordinates fixed elsewhere. That is the experiment I would run next, and this one cannot settle it.',
     ],
     stack: ['JEPA world models', 'Koopman-style spectral structure', 'Latent dynamical systems', 'State-space models', 'Rollout stability', 'Controlled experiments'],
@@ -61,9 +61,9 @@ export const projects: Project[] = [
     description:
       'A from-scratch machine-learning curriculum: 52 course-style notebooks backed by a scikit-learn-style Python library, running from a hand-written autograd engine to the geometry of learned representations. Each notebook takes one model apart rather than only re-implementing it.',
     highlights: [
-      'Every chapter is written as a full course rather than a code dump: why the family was invented, what each term of the equation means, what each hyperparameter actually controls, and what the experiment shows when the model fails. The recurring question is why one design supersedes another — why convolution fits images better than a dense MLP, why a ViT can overtake a CNN once data is plentiful, why GAN instability pushed the field toward score-based and diffusion models.',
+      'Every chapter is written as a full course: why the family was invented, what each term of the equation means, what each hyperparameter actually controls, and what the experiment shows when the model fails. The recurring question is why one design supersedes another. Why does convolution fit images better than a dense MLP? Why can a ViT overtake a CNN once data is plentiful? Why did GAN instability push the field toward score-based and diffusion models?',
       'Covers the full arc: numerical foundations with a custom Tensor/autograd engine, classical supervised and unsupervised estimators in NumPy, then CNNs, RNN/LSTM, Transformers, state-space models (S4, Mamba), GNNs, and generative modeling (VAE, GAN, contrastive learning, energy-based models (EBM) and score matching, DDPM, flow matching, latent diffusion) in PyTorch.',
-      'The last section goes past a standard ML curriculum: the geometry of representations — manifold learning, Riemannian optimization, optimal transport (Wasserstein/Sinkhorn), information geometry and the natural gradient, hyperbolic embeddings, equivariant networks, and diagnostics such as CKA and intrinsic dimension.',
+      'The last section goes past a standard ML curriculum: the geometry of representations: manifold learning, Riemannian optimization, optimal transport (Wasserstein/Sinkhorn), information geometry and the natural gradient, hyperbolic embeddings, equivariant networks, and diagnostics such as CKA and intrinsic dimension.',
       'Shared fit/predict/transform API across 123 modules, and implementations traced back to 196 catalogued references.'
     ],
     stack: ['Python', 'NumPy', 'PyTorch', 'Autograd', 'Generative models', 'Geometric deep learning'],
@@ -76,7 +76,7 @@ export const projects: Project[] = [
     description:
       'A private research prototype around region-of-interest semantic extraction with V-JEPA-style video representations.',
     highlights: [
-      'Tests how predictive video representations can be organized around meaningful regions rather than only pixels.',
+      'Tests how predictive video representations can be organized around meaningful regions of the image.',
       'The underlying question is whether predictive representations can be built around semantic regions rather than spatial patches, a problem that came up directly in the Bell Labs work.',
       'Kept private while the research direction and artifacts are still being refined.'
     ],
