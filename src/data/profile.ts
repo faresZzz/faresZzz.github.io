@@ -49,12 +49,12 @@ export const motivation = [
   {
     title: 'The question I keep coming back to',
     body:
-      'How can a machine learn a model of a physical system good enough to plan and act with, and how do you tell when that model can be trusted? World models move learning from describing what is there to predicting what happens next, and the predictor is where much of that plays out.',
+      'How can a machine learn, from what it sees, a model of the world good enough to plan and act with, and how do you tell when that model can be trusted? World models move learning from describing what is there to predicting what happens next, and the predictor is where much of that plays out.',
   },
   {
     title: 'Where my expertise comes from',
     body:
-      'Systems that evolve in time under rules you can write down. I studied computer science and electronics, verified hardware at Apple by reasoning about reachable states, and my research projects look at the dynamics and stability of latent predictors. Robotics and autonomous systems are where I want this to matter.',
+      'Two halves of the same problem. Perception under constraint: at Nokia Bell Labs I built video models that find what matters in each frame within a compute budget. Dynamics and control: I studied computer science and electronics, verified hardware at Apple by reasoning about reachable states, and my research looks at the stability of latent predictors. Robotics and autonomous driving are where the two meet.',
   },
   {
     title: 'Ideas from other fields',

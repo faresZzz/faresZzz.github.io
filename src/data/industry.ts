@@ -130,7 +130,7 @@ export const industryMotivation = [
   {
     title: 'The domain I build toward',
     body:
-      'Machine learning for physical systems that evolve over time and have to be controlled or checked: robots, machines, hardware. My background sits at that seam: a degree in computer science and electronics, hardware verification at Apple, and research on the dynamics inside world models.',
+      'Perception and control for systems that move: robots, autonomous vehicles, machines. First see the scene from video within a tight compute budget, then predict how it will evolve and act on it. My background covers both halves: real-time video perception at Nokia Bell Labs, and dynamics, control and verification from my degree in computer science and electronics, my work at Apple and my research on world models.',
   },
   {
     title: 'A hard problem I tackled',
@@ -140,7 +140,7 @@ export const industryMotivation = [
   {
     title: 'What I am looking for',
     body:
-      'A research team building models that act in the physical world, in robotics, automation or autonomous systems, where getting the model right also means understanding the system it describes.',
+      'A research team building models that see and act in the physical world, in robotics or autonomous driving, where getting the model right also means understanding the system it describes.',
   },
 ];
 
