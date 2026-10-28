@@ -49,12 +49,12 @@ export const motivation = [
   {
     title: 'The question I keep coming back to',
     body:
-      'How can a machine learn a model of the world good enough to plan with, and how do you tell when that model can be trusted? World models move learning from describing what is there to predicting what happens next. To me that is the most exciting shift in the field right now, and the predictor is where much of it plays out.',
+      'How can a machine learn a model of a physical system good enough to plan and act with, and how do you tell when that model can be trusted? World models move learning from describing what is there to predicting what happens next, and the predictor is where much of that plays out.',
   },
   {
-    title: 'How I like to work',
+    title: 'Where my expertise comes from',
     body:
-      'I learn by rebuilding. When a method matters to me, I write it out from the paper and the mathematics until I can explain every term, then I test it on a problem where I know the answer. My research projects follow the same habit: a controlled question, a result I can check, and negative results reported as they come.',
+      'Systems that evolve in time under rules you can write down. I studied computer science and electronics, verified hardware at Apple by reasoning about reachable states, and my research projects look at the dynamics and stability of latent predictors. Robotics and autonomous systems are where I want this to matter.',
   },
   {
     title: 'Ideas from other fields',

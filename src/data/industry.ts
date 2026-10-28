@@ -128,9 +128,9 @@ export const industrySkills = [
 
 export const industryMotivation = [
   {
-    title: 'Why I do this work',
+    title: 'The domain I build toward',
     body:
-      'I want to understand why a method works before I rely on it. That is why I rebuild what I use from the papers and the mathematics up: 25 reinforcement-learning algorithms, a GPT-2, latent diffusion. Then I want to see it run on a real problem, with real constraints.',
+      'Machine learning for physical systems that evolve over time and have to be controlled or checked: robots, machines, hardware. My background sits at that seam: a degree in computer science and electronics, hardware verification at Apple, and research on the dynamics inside world models.',
   },
   {
     title: 'A hard problem I tackled',
@@ -140,7 +140,7 @@ export const industryMotivation = [
   {
     title: 'What I am looking for',
     body:
-      'A team that does AI research and ships what it learns, where I can take a question all the way to a system that runs and keep learning from people who know more than I do.',
+      'A research team building models that act in the physical world, in robotics, automation or autonomous systems, where getting the model right also means understanding the system it describes.',
   },
 ];
 
