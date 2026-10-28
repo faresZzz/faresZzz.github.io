@@ -45,6 +45,24 @@ export const researchDirection = [
   },
 ];
 
+export const motivation = [
+  {
+    title: 'The question I keep coming back to',
+    body:
+      'How can a machine learn, from what it sees, a model of the world good enough to plan and act with, and how do you tell when that model can be trusted? World models move learning from describing what is there to predicting what happens next, and the predictor is where much of that plays out.',
+  },
+  {
+    title: 'Where my expertise comes from',
+    body:
+      'Two halves of the same problem. Perception under constraint: at Nokia Bell Labs I built video models that find what matters in each frame within a compute budget. Dynamics and control: I studied computer science and electronics, verified hardware at Apple by reasoning about reachable states, and my research looks at the stability of latent predictors. Robotics and autonomous driving are where the two meet.',
+  },
+  {
+    title: 'Ideas from other fields',
+    body:
+      'I like borrowing structure from elsewhere: dynamical systems and control for modes and stability, energy-based models for what a planner should optimize, adaptive neuron models from neuroscience, formal verification for stating what a system must preserve. I want a PhD to take one of these links far enough to give a clear answer.',
+  },
+];
+
 export const researchFraming =
   'I work on the predictor of a JEPA world model: the module that moves a latent state forward in time and whose behavior shapes whether planning on top of it holds up.';
 
@@ -62,8 +80,8 @@ export const experience = [
     bullets: [
       'No dataset existed for the task. With my supervisor, I spent several weeks designing a metric that makes training possible without hand-annotated ground truth. I built the data engine on my own: about 2,000 keyframes annotated semi-manually (clicks plus generated masks) were used to fine-tune a vision-language model that drives an automatic labeling pipeline for the corpus (about two hours of gameplay from 12 games across four genres), without months of manual labeling.',
       'The approach chosen first was a JEPA-style model that propagates the latent state to predict the next focus maps directly. It was dropped under the per-frame latency, compute and dataset-size constraints, and the teacher-student pipeline below is what came out of that constraint.',
-      'Built the teacher-student focus-map prediction pipeline: Grounding DINO for semantic anchoring, RAFT optical flow for temporal propagation, and a lightweight correction network for the dense focus maps. Along the way I also tried state-space models and Mamba Vision encoders. The hybrid I kept was designed to bring the cost down toward a real-time budget, which it does not reach yet: the heavy semantic model runs on one frame in eight and motion carries the maps in between, about 5× cheaper by my estimate than running the semantic model on every frame.',
-      'Designed the pseudo-supervision setup, tracked temporal drift across pipeline modes, and built the evaluation protocol for dense maps. On overlap with the pseudo-labels, the hybrid lands between the motion-only baseline and the semantic-only model, at about a fifth of the cost of the latter, and beats the motion-only and saliency-only baselines.',
+      'Built the teacher-student focus-map prediction pipeline: Grounding DINO for semantic anchoring, RAFT optical flow for temporal propagation, and a lightweight correction network for the dense focus maps. Along the way I also tried state-space models and Mamba Vision encoders. In the hybrid I kept, the heavy semantic model runs on one frame in eight and motion carries the maps in between, about 5× cheaper by my estimate than running the semantic model on every frame.',
+      'Designed the pseudo-supervision setup, tracked temporal drift across pipeline modes, and built the evaluation protocol for dense maps. On overlap with the pseudo-labels, the hybrid beats the motion-only and saliency-only baselines at about a fifth of the cost of the semantic-only model.',
     ],
   },
   {
@@ -76,7 +94,7 @@ export const experience = [
     bullets: [
       'Modeled IP behavior with finite-state machines and event-based abstractions, so long-running processes could be reasoned about without expanding every low-level timing step.',
       'Used model checking for behaviors that simulation cannot cover exhaustively; working with formal properties changed how I think about reachable states, specifications, and what it means for a system to fail.',
-      'Built Python tooling that generates Verilog/SystemVerilog assertions from high-level specifications: FSM-level specifications feed the model checker directly. I applied it to several industrial designs that had already been verified by hand, with bugs injected on purpose to test it. Coverage stayed below the hand-written properties, mainly because data signals were not modeled yet.',
+      'Built Python tooling that generates Verilog/SystemVerilog assertions from high-level specifications: FSM-level specifications feed the model checker directly. I applied it to several industrial designs that had already been verified by hand, with bugs injected on purpose to test it.',
       'The event-based abstraction sets the level at which reachable states are specified. Model checking operates there rather than at the cycle level, which changed which properties were practical to verify.',
     ],
   },

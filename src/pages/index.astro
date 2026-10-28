@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { education, experience, profile, researchDirection, researchFraming, researchOpening, selfLearning, selfLearningIntro, skills } from '../data/profile';
+import { education, experience, motivation, profile, researchDirection, researchFraming, researchOpening, selfLearning, selfLearningIntro, skills } from '../data/profile';
 import { otherEngineering, projects } from '../data/projects';
 import '../styles/site.css';
 ---
@@ -71,6 +71,21 @@ import '../styles/site.css';
       </div>
       <div class="research-approach">
         <p class="research-opening">{researchOpening}</p>
+      </div>
+    </section>
+
+    <section id="motivation" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Motivation</p>
+        <h2>What drives me</h2>
+      </div>
+      <div class="research-grid">
+        {motivation.map((item) => (
+          <article class="plain-card">
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
       </div>
     </section>
 

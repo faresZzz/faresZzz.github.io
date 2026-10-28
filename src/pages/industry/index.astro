@@ -5,6 +5,7 @@ import {
   industryEducation,
   industryExperience,
   industryLearningIntro,
+  industryMotivation,
   industryProfile,
   industryProjects,
   industrySkills,
@@ -162,6 +163,21 @@ const description =
             </article>
           ))}
         </div>
+      </div>
+    </section>
+
+    <section id="motivation" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Motivation</p>
+        <h2>What drives me</h2>
+      </div>
+      <div class="research-grid">
+        {industryMotivation.map((item) => (
+          <article class="plain-card">
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
       </div>
     </section>
 
