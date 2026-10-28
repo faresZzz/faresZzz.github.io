@@ -130,7 +130,7 @@ export const industryMotivation = [
   {
     title: 'The domain I build toward',
     body:
-      'Perception and control for systems that move: robots, autonomous vehicles, machines. First see the scene from video within a tight compute budget, then predict how it will evolve and act on it. My background covers both halves: video perception under a compute budget at Nokia Bell Labs, and dynamics, control and verification from my degree in computer science and electronics, my work at Apple and my research on world models.',
+      'Perception and control for systems that move: robots, autonomous vehicles, machines. First see the scene from video, then predict how it will evolve and act on it. My background covers both halves: video perception under a compute budget at Nokia Bell Labs, and dynamics, control and verification from my degree in computer science and electronics, my work at Apple and my research on world models.',
   },
   {
     title: 'A hard problem I tackled',
