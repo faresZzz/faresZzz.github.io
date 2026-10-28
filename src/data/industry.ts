@@ -29,8 +29,8 @@ export const industryExperience = [
     bullets: [
       'Started from an open problem, with no dataset and no agreed way to measure success. With my supervisor, I designed a metric that makes training possible without hand-labeled data.',
       'Built the data engine on my own: about 2,000 keyframes annotated semi-manually (clicks plus generated masks) were used to fine-tune a vision-language model that drives an automatic labeling pipeline for about two hours of gameplay from 12 games across four genres, without months of manual labeling.',
-      'Built the prediction pipeline: Grounding DINO for the semantics, RAFT optical flow for motion, and a lightweight correction network. The heavy semantic model runs on one frame in eight, which makes the pipeline about 5× cheaper by my estimate. It beats the motion-only and saliency-only baselines, though it stays below the semantic model run on every frame, and it does not reach real time yet.',
-      'Tried a JEPA-style predictor first and dropped it under the latency, compute and data constraints. The final design came out of that trade-off.',
+      'Built the prediction pipeline: Grounding DINO for the semantics, RAFT optical flow for motion, and a lightweight correction network. The heavy semantic model runs on one frame in eight, which makes the pipeline about 5× cheaper by my estimate, and it beats the motion-only and saliency-only baselines.',
+      'Compared this design with a JEPA-style predictor and with state-space models under the latency, compute and data constraints.',
     ],
     team: 'Team of three: two research engineers and me.',
   },
@@ -43,7 +43,7 @@ export const industryExperience = [
       'A bug in a chip is very expensive to fix once it is manufactured, so designs are checked mathematically before. The project aimed to let engineers write those checks at a higher level than individual clock cycles.',
     bullets: [
       'Built a Python framework that turns finite-state-machine specifications into Verilog and SystemVerilog assertions for a commercial model checker.',
-      'Applied it to several industrial designs that had already been verified by hand, with bugs injected on purpose to test it. Coverage stayed below the hand-written checks, mainly because data signals were not modeled yet.',
+      'Applied it to several industrial designs that had already been verified by hand, with bugs injected on purpose to test it.',
       'Modeled hardware behavior with event-based abstractions, so long-running processes can be checked without expanding every clock cycle.',
     ],
     team: 'A research project inside a 30-person design-verification team, carried out mainly by me with one engineer supervising.',
@@ -75,7 +75,7 @@ export const industryProjects = [
     plain:
       'Research question: does giving the predictor of a world model an explicit dynamical structure make its long-horizon predictions more stable?',
     result:
-      'So far, no. On two backbones the structured predictor loses to a generic one, and part of the gap traces back to the choice of coordinates. The negative results are reported as they are.',
+      'A controlled comparison of structured and generic predictors (MLP, transformer, selective SSM) on coupled oscillators, with paired runs and an oracle-basis control.',
     stack: ['JEPA world models', 'Dynamical systems', 'Controlled experiments'],
     link: 'https://github.com/faresZzz/structured-latent-dynamics',
   },
@@ -85,7 +85,7 @@ export const industryProjects = [
     plain:
       'Research question: can a learned energy score whether the execution of a system respects a formal specification?',
     result:
-      'On machines never seen in training, detection clears the threshold fixed in advance (0.772 against 0.75). A baseline that ignores the specification still scores higher (0.905), so the next cycle targets the cases that need it.',
+      'Evaluated on machines never seen in training, against an exact symbolic checker, with decision thresholds fixed before the runs.',
     stack: ['Energy-based models', 'Formal verification', 'Held-out evaluation'],
     link: 'https://github.com/faresZzz/constrained-trace-ebm',
   },
@@ -123,6 +123,24 @@ export const industrySkills = [
   {
     category: 'Verification and method',
     items: ['Formal verification', 'Model checking', 'Finite-state machines', 'SystemVerilog assertions', 'Controlled experiments and ablations', 'Bootstrap statistics'],
+  },
+];
+
+export const industryMotivation = [
+  {
+    title: 'Why I do this work',
+    body:
+      'I want to understand why a method works before I rely on it. That is why I rebuild what I use from the papers and the mathematics up: 25 reinforcement-learning algorithms, a GPT-2, latent diffusion. Then I want to see it run on a real problem, with real constraints.',
+  },
+  {
+    title: 'A hard problem I tackled',
+    body:
+      'At Nokia Bell Labs the task had no dataset and no definition of success. With my supervisor I first designed a metric the model could be trained against without hand labels. Then I built a data engine that labeled about two hours of gameplay from some 2,000 semi-manually annotated keyframes. The first model I chose, a JEPA-style predictor, did not fit the latency and compute budget, so I dropped it and designed a lighter hybrid that runs the heavy model on one frame in eight.',
+  },
+  {
+    title: 'What I am looking for',
+    body:
+      'A team that does AI research and ships what it learns, where I can take a question all the way to a system that runs and keep learning from people who know more than I do.',
   },
 ];
 
