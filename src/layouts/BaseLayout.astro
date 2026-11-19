@@ -63,6 +63,11 @@ const jsonLd = JSON.stringify({
     <script type="application/ld+json" set:html={jsonLd} />
 
     <title>{title}</title>
+
+    <!-- Mesure d'audience anonyme (GoatCounter) : sans cookie, pas sur la page piège à robots -->
+    {!robots && (
+      <script data-goatcounter="https://fareszzz.goatcounter.com/count" async src="//gc.zgo.at/count.js" is:inline></script>
+    )}
   </head>
   <body>
     <slot />
